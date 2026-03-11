@@ -103,3 +103,58 @@ const data = {
   ],
 
 };
+const courseListEl =document.getElementById('courseList');
+let allowedLangs = ['MG','FR','EN'];
+
+document.querySelectorAll('.flags button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const span = btn.querySelector('span');
+    const lang = span.classList[span.classList.length - 1].toUpperCase();
+    if (span.classList.contains('active')) {
+      span.classList.remove('active');
+      const index = allowedLangs.indexOf(lang);
+      if (index !== -1) allowedLangs.splice(index, 1);
+    } else {
+      span.classList.add('active');
+      allowedLangs.push(lang);
+    }
+
+    courseListEl.innerHTML = listCourse(data.courses);
+  });
+});
+function listCourse(courses) {
+  if (!Array.isArray(courses)) return '';
+  return courses
+  .filter(course => allowedLangs.includes((course.language || '').toUpperCase()))
+  .map(course => {
+    const level = (course.level || 'beginner').toLowerCase();
+    const lang = (course.language || '').toUpperCase();
+    const tech = (Array.isArray(course.technologies) && course.technologies.length) ? course.technologies[0] : '';
+    const price =course.price;
+    const thumb = course.thumbnail;
+
+    return `
+      <div class="w-85 bg-white rounded-xl shadow overflow-hidden card relative mb-4" data-level="${level}">
+        <div class="badge flex gap-1 absolute z-10 top-2 left-2">
+          <span class="langue rounded-xl bg-white text-dark text-sm py-1 px-2">${lang}</span>
+          ${tech ? `<span class="tech rounded-xl bg-dark text-white text-sm py-1 px-2">${tech}</span>` : ''}
+        </div>
+        <div class="description relative" data-level="${level}">
+          <img src="${thumb}" alt="${course.title}">
+        </div>
+        <article class="flex flex-col justify-between gap-3 my-2 relative px-1">
+          <div class="flex flex-col">
+            <h2 class="text-3xl text-red-dark truncate w-full font-semibold">${course.title}</h2>
+            <span class="text-dark text-lg font-bold">MGA ${price}</span>
+          </div>
+          <p class="text-sm text-dark line-clamp-3">${course.description}</p>
+          <div class="flex gap-2 items-center justify-center">
+            <button class="bg-white text-red hover:scale border border-red py-2 px-4 rounded-lg shadow-xl" id="learnMore">Learn more</button>
+            <button class="bg-red text-white py-2 px-4 rounded-lg shadow-xl" id="addToCart">Add to cart</button>
+          </div>
+        </article>
+      </div>
+    `;
+  }).join('\n');
+}
+  courseListEl.innerHTML = listCourse(data.courses);

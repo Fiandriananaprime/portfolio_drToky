@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="tailwind.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.3.2/css/flag-icons.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+    <header class="bg-warm">
+        <nav class="bg-red flex items-center justify-between px-5 py-1">
+            <a href="index.html"><img class="w-45" src="assets/logo.png" alt=""></a>
+            <ul class="flex gap-5 text-white">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="courses.html">Courses</a></li>
+                <li><a href="testimonial.html">Testimonials</a></li>
+                <li><a href="research.html">Research</a></li>
+            </ul>
+            <div>
+                <input type="text" placeholder="search anything..." class="placeholder:text-white placeholder:opacity-50 text-center text-white focus:outline-none">
+                <button id="cart"><i class="fa-solid fa-basket-shopping text-white text-2xl"></i></button>
+            </div>
+        </nav>
+        <section class="flex flex-col justify-center items-center gap-5 py-10 shadow">
+            <h5 class="flex justify-center items-center gap-5  text-light font-bold">
+                <span class="w-10 h-1 bg-red"></span>LEARNING<span class="w-10 h-1 bg-red-dark"></span>
+            </h5>
+            <h1 class="flex justify-center items-center gap-3 text-6xl  font-bold">
+                <span class="text-dark font-playfair">All</span>
+                <span class="text-red font-playfair italic">Courses</span>
+            </h1>
+            <p class="text-dark text-center max-w-2xl px-5">Online and offline courses across development, translation, and research. Find the one that fits your level and goals.</p>
+        </section>
+    </header>
+    <main class="px-15">
+        <div class="flex items-center justify-between bg-warm p-3 rounded-lg m-5 shadow filter">
+            <div class="flex flex-col items-center">
+                <h3>Language</h3>
+                <div class="flags">
+                    <button>
+                        <span class="fi fi-mg active mg"></span>
+                    </button>
+                    <button>
+                        <span class="fi fi-fr active fr"></span>
+                    </button>
+                    <button>
+                        <span class="fi fi-us active en"></span>
+                    </button>
+                </div>
+            </div>
+            <div>
+                <h3>Technologie</h3>
+                <select name="" id="technologies" class="bg-white border-border text-gray-700 rounded-lg b px-3 py-2 focus-border-red">
+                    <option value="">All technologies</option>
+                    <option value="">JavaScript</option>
+                    <option value="">Java</option>
+                    <option value="">Python</option>
+                    <option value="">php</option>
+                </select>
+            </div>
+            <div>
+                <h3>Level</h3>
+                <select name="" id="level" class="bg-white border-border text-gray-700 rounded-lg b px-3 py-2 focus-border-red">
+                    <option value="">All levels</option>
+                    <option value="">Beginner</option>
+                    <option value="">Intermediate</option>
+                    <option value="">Advanced</option>
+                </select>
+            </div>
+            <div>
+                <h3 class="flex-col flex-wrap">
+                    Price Range
+                    <span id="price-range" class="text-red-dark text-sm font-bold">0Ar-300.000Ar</span>
+                    <div class="range flex flex-col items-center gap-3">
+                                <input type="range" value="0" name="price" id="rangeMin" min="0" max="300000" class=" w-full focus-border-red price-range">
+                                <input type="range" value="300000" name="price" id="rangeMax" min="0" max="300000" class=" w-full focus-border-red price-range">
+                    </div>
+                </h3>
+            </div>
+            <div>
+                <h3>Search</h3>
+                <input type="text" placeholder="keywords..." class="placeholder:text-gray-500 placeholder:opacity-50 text-center text-gray-700 focus:outline-none bg-white border-border rounded-lg px-3 py-2 focus-border-red">
+            </div>
+            <button class=" hover-text-red text-muted py-2 px-4 rounded">Clear all</button>
+        </div>
+        <section id="courseList" class="flex flex-wrap gap-5 justify-center">
+        </section>
+
+    </main>
+    <footer>
+
+    </footer>
+    <script  src="JS/courses.js"></script>
+    <script src="JS/range.js"></script>
+</body>
+</html>
