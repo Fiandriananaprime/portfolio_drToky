@@ -15,7 +15,7 @@
 </head>
 <body>
     <header class="bg-warm">
-        <nav class="bg-red flex items-center justify-between px-5 py-1">
+        <nav class="bg-red fixed w-full top-0 z-50 flex items-center justify-between px-5 py-1">
             <a href="index.html"><img class="w-45" src="assets/logo.png" alt=""></a>
             <ul class="flex gap-5 text-white">
                 <li><a href="index.html">Home</a></li>
@@ -24,12 +24,13 @@
                 <li><a href="testimonial.html">Testimonials</a></li>
                 <li><a href="research.html">Research</a></li>
             </ul>
-            <div>
-                <input type="text" placeholder="search anything..." class="placeholder:text-white placeholder:opacity-50 text-center text-white focus:outline-none">
-                <button id="cart"><i class="fa-solid fa-basket-shopping text-white text-2xl"></i></button>
+            <div class="relative">
+                <input type="text" placeholder="search anything..." class="placeholder:text-white placeholder:opacity-50 text-center text-white focus:outline-none px-3 py-2 rounded-lg">
+                <button class="relative cart"><i class="fa-solid fa-basket-shopping text-white text-2xl"></i></button>
+                <div id="cartList" class="hidden absolute right-0 mt-2 bg-white p-2 rounded-lg shadow-lg"></div>
             </div>
         </nav>
-        <section class="flex flex-col justify-center items-center gap-5 py-10 shadow">
+        <section class="flex flex-col justify-center items-center gap-5 py-10 mt-15 shadow">
             <h5 class="flex justify-center items-center gap-5  text-light font-bold">
                 <span class="w-10 h-1 bg-red"></span>LEARNING<span class="w-10 h-1 bg-red-dark"></span>
             </h5>
@@ -40,13 +41,13 @@
             <p class="text-dark text-center max-w-2xl px-5">Online and offline courses across development, translation, and research. Find the one that fits your level and goals.</p>
         </section>
     </header>
-    <main class="px-15">
-        <div class="flex items-center justify-between bg-warm p-3 rounded-lg m-5 shadow filter">
+    <main class="flex items-center flex-col">
+        <div class="flex items-center justify-between w-[90%] bg-warm p-3 rounded-lg m-5 mb-10 shadow filter">
             <div class="flex flex-col items-center">
                 <h3>Language</h3>
                 <div class="flags">
                     <button>
-                        <span class="fi fi-mg active mg"></span>
+                        <span class="fi fi-mg  active mg"></span>
                     </button>
                     <button>
                         <span class="fi fi-fr active fr"></span>
@@ -58,21 +59,21 @@
             </div>
             <div>
                 <h3>Technologie</h3>
-                <select name="" id="technologies" class="bg-white border-border text-gray-700 rounded-lg b px-3 py-2 focus-border-red">
-                    <option value="">All technologies</option>
-                    <option value="">JavaScript</option>
-                    <option value="">Java</option>
-                    <option value="">Python</option>
-                    <option value="">php</option>
+                <select name="" id="selectTech" class="bg-white border-border text-gray-700 rounded-lg b px-3 py-2 focus-border-red">
+                    <option value="all">All technologies</option>
+                    <option value="javascript">JavaScript</option>
+                    <option value="java">Java</option>
+                    <option value="python">Python</option>
+                    <option value="php">php</option>
                 </select>
             </div>
             <div>
                 <h3>Level</h3>
-                <select name="" id="level" class="bg-white border-border text-gray-700 rounded-lg b px-3 py-2 focus-border-red">
-                    <option value="">All levels</option>
-                    <option value="">Beginner</option>
-                    <option value="">Intermediate</option>
-                    <option value="">Advanced</option>
+                <select name="" id="selectLevel" class="bg-white border-border text-gray-700 rounded-lg b px-3 py-2 focus-border-red">
+                        <option value="all">All levels</option>
+                    <option value="beginner">Beginner</option>
+                    <option value="intermediate">Intermediate</option>
+                    <option value="advanced">Advanced</option>
                 </select>
             </div>
             <div>
@@ -87,18 +88,29 @@
             </div>
             <div>
                 <h3>Search</h3>
-                <input type="text" placeholder="keywords..." class="placeholder:text-gray-500 placeholder:opacity-50 text-center text-gray-700 focus:outline-none bg-white border-border rounded-lg px-3 py-2 focus-border-red">
+                 <input id="searchInput" type="text" placeholder="keywords..." class="placeholder:text-gray-500 placeholder:opacity-50 text-center text-gray-700 focus:outline-none bg-white border-border rounded-lg px-3 py-2 focus-border-red">
             </div>
-            <button class=" hover-text-red text-muted py-2 px-4 rounded">Clear all</button>
+            <button id="clearAll" class=" hover-text-red text-muted py-2 px-4 rounded">Clear all</button>
         </div>
-        <section id="courseList" class="flex flex-wrap gap-5 justify-center">
-        </section>
+        <div class="flex justify-center">
+
+        </div>
+        <div class="shadow-2xl pt-10 w-full flex flex-col">
+            <span id="resultCount" class="text-muted p-2 ml-30"></span>
+            <div class="w-full flex justify-center">
+                <section id="courseList" class="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-10">
+                </section>
+            </div>
+        </div>
 
     </main>
-    <footer>
-
+    <footer class="flex flex-col items-center justify-center gap-5 bg-red py-15">
+        <h3 class="text-3xl text-white font-playfair font-bold">Not sure where to start?</h3>
+        <p class="text-white w-130 text-center">Book a free discover call and find the course that fits your goals and schedule.</p>
+        <button class="py-3 px-8 rounded-3xl border border-white text-white hover:bg-white hover-text-red">Get in touch</button>
     </footer>
-    <script  src="JS/courses.js"></script>
+    <script src="JS/courses.js"></script>
+    <script src="JS/cart.js"></script>
     <script src="JS/range.js"></script>
 </body>
 </html>

@@ -103,8 +103,68 @@ const data = {
   ],
 
 };
+
 const courseListEl =document.getElementById('courseList');
+const selectTech = document.getElementById('selectTech');
+const selectLevel = document.getElementById('selectLevel');
+const rangeMinEl = document.getElementById('rangeMin');
+const rangeMaxEl = document.getElementById('rangeMax');
+const searchEl = document.getElementById('searchInput');
+const clearBtn = document.getElementById('clearAll');
+const resultCountEl = document.getElementById('resultCount');
+const flagsEl = document.querySelectorAll('.flags button span');
+const priceRange = document.getElementById('price-range');
+const minRange = document.getElementById('rangeMin');
+const maxRange = document.getElementById('rangeMax');
+let searchTerm = '';
+let allowedLevels = [];
 let allowedLangs = ['MG','FR','EN'];
+let allowedTechs = [];
+const numberResults = data.courses.length;
+
+clearBtn.addEventListener('click', () => {
+  searchTerm = '';
+  searchEl.value = '';
+  flagsEl.forEach(btn => {
+    btn.classList.add('active');
+  });
+  priceRange.textContent="0 - 300000 MGA";
+  
+  allowedLevels = [];
+  allowedLangs = ['MG','FR','EN'];
+  allowedTechs = [];
+  selectLevel.value = 'all';
+  selectTech.value = 'all';
+  if (rangeMinEl) rangeMinEl.value = rangeMinEl.min || 0;
+  if (rangeMaxEl) rangeMaxEl.value = rangeMaxEl.max || 300000;
+  if (rangeMinEl) rangeMinEl.dispatchEvent(new Event('input', { bubbles: true }));
+  if (rangeMaxEl) rangeMaxEl.dispatchEvent(new Event('input', { bubbles: true }));
+  courseListEl.innerHTML = listCourse(data.courses);
+});
+
+selectLevel.addEventListener('change', () => {
+  const level = (selectLevel.value || '').toLowerCase();
+  if (!level || level === 'all') allowedLevels = [];
+  else allowedLevels = [level];
+  courseListEl.innerHTML = listCourse(data.courses);
+});
+
+selectTech.addEventListener('change', () => {
+  const tech = (selectTech.value || '').toLowerCase();
+  if (!tech || tech === 'all') allowedTechs = [];
+  else allowedTechs = [tech];
+  courseListEl.innerHTML = listCourse(data.courses);
+});
+
+if (rangeMinEl) rangeMinEl.addEventListener('input', () => courseListEl.innerHTML = listCourse(data.courses));
+if (rangeMaxEl) rangeMaxEl.addEventListener('input', () => courseListEl.innerHTML = listCourse(data.courses));
+
+if (searchEl) {
+  searchEl.addEventListener('input', (e) => {
+    searchTerm = (e.target.value || '').toLowerCase().trim();
+    courseListEl.innerHTML = listCourse(data.courses);
+  });
+}
 
 document.querySelectorAll('.flags button').forEach(btn => {
   btn.addEventListener('click', () => {
@@ -122,19 +182,52 @@ document.querySelectorAll('.flags button').forEach(btn => {
     courseListEl.innerHTML = listCourse(data.courses);
   });
 });
+
 function listCourse(courses) {
   if (!Array.isArray(courses)) return '';
-  return courses
-  .filter(course => allowedLangs.includes((course.language || '').toUpperCase()))
-  .map(course => {
+
+  const filteredCourses = courses
+    .filter(course => {
+      if (!searchTerm) return true;
+      const hay = ((course.title || '') + ' ' + (course.description || '') + ' ' + ((course.technologies || []).join(' '))).toLowerCase();
+      return hay.includes(searchTerm);
+    })
+    .filter(course => {
+      if (!allowedLevels.length) return true;
+      return allowedLevels.includes((course.level || 'beginner').toLowerCase());
+    })
+    .filter(course => {
+      if (!allowedTechs.length) return true;
+      const techs = Array.isArray(course.technologies) ? course.technologies.map(t => (t || '').toLowerCase()) : [];
+      return allowedTechs.some(t => techs.includes(t));
+    })
+    .filter(course => {
+      if (!rangeMinEl && !rangeMaxEl) return true;
+      const min = rangeMinEl ? Number(rangeMinEl.value) : Number.NEGATIVE_INFINITY;
+      const max = rangeMaxEl ? Number(rangeMaxEl.value) : Number.POSITIVE_INFINITY;
+      const price = Number(course.price) || 0;
+      return price >= min && price <= max;
+    })
+    .filter(course => allowedLangs.includes((course.language || '').toUpperCase()));
+    if (resultCountEl) {
+      if (filteredCourses.length === data.courses.length) {
+        resultCountEl.textContent = '';
+        resultCountEl.style.display = 'none';
+      } else {
+        resultCountEl.textContent = `${filteredCourses.length} course${filteredCourses.length !== 1 ? 's' : ''} found`;
+        resultCountEl.style.display = 'inline';
+      }
+    }
+    return filteredCourses.map(course => {
     const level = (course.level || 'beginner').toLowerCase();
     const lang = (course.language || '').toUpperCase();
     const tech = (Array.isArray(course.technologies) && course.technologies.length) ? course.technologies[0] : '';
     const price =course.price;
     const thumb = course.thumbnail;
-
+      console.log(filteredCourses.length);
+      
     return `
-      <div class="w-85 bg-white rounded-xl shadow overflow-hidden card relative mb-4" data-level="${level}">
+      <div class="w-[20vw] bg-white rounded-xl shadow overflow-hidden card relative mb-4" data-level="${level}">
         <div class="badge flex gap-1 absolute z-10 top-2 left-2">
           <span class="langue rounded-xl bg-white text-dark text-sm py-1 px-2">${lang}</span>
           ${tech ? `<span class="tech rounded-xl bg-dark text-white text-sm py-1 px-2">${tech}</span>` : ''}
@@ -150,11 +243,13 @@ function listCourse(courses) {
           <p class="text-sm text-dark line-clamp-3">${course.description}</p>
           <div class="flex gap-2 items-center justify-center">
             <button class="bg-white text-red hover:scale border border-red py-2 px-4 rounded-lg shadow-xl" id="learnMore">Learn more</button>
-            <button class="bg-red text-white py-2 px-4 rounded-lg shadow-xl" id="addToCart">Add to cart</button>
+            <button class=" cartBtn bg-red text-white py-2 px-4 rounded-lg shadow-xl" data-course-id="${course.id}">Add to cart</button>
           </div>
         </article>
       </div>
     `;
   }).join('\n');
 }
-  courseListEl.innerHTML = listCourse(data.courses);
+
+
+courseListEl.innerHTML = listCourse(data.courses);
