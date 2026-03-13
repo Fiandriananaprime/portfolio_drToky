@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="tailwind.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.3.2/css/flag-icons.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+      rel="stylesheet"
+    />
+    <title>Research</title>
+  </head>
+  <body>
+    <header class="bg-warm">
+      <nav
+        class="bg-red fixed w-full top-0 z-50 flex items-center justify-between px-5 py-1"
+      >
+        <a href="index.html"
+          ><img class="w-45" src="assets/logo.png" alt=""
+        /></a>
+        <ul class="flex gap-5 text-white">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="courses.html">Courses</a></li>
+          <li><a href="testimonial.html">Testimonials</a></li>
+          <li><a href="research.html">Research</a></li>
+        </ul>
+        <div class="relative">
+          <input
+            type="text"
+            placeholder="search anything..."
+            class="placeholder:text-white placeholder:opacity-50 text-center text-white focus:outline-none px-3 py-2 rounded-lg"
+          />
+          <button class="relative cart">
+            <i class="fa-solid fa-basket-shopping text-white text-2xl"></i>
+          </button>
+          <div
+            id="cartList"
+            class="hidden absolute right-0 mt-2 w-[18vw] bg-white p-3 rounded-lg shadow-lg flex flex-col items-center"
+          ></div>
+        </div>
+      </nav>
+      <section
+        class="flex flex-col justify-center items-center gap-5 py-10 mt-15 shadow"
+      >
+        <h5 class="flex justify-center items-center gap-5 text-light font-bold">
+          <span class="w-10 h-1 bg-red"></span>Academic Work<span
+            class="w-10 h-1 bg-red-dark"
+          ></span>
+        </h5>
+        <h1 class="flex justify-center items-center gap-3 text-6xl font-bold">
+          <span class="text-dark font-playfair">Research</span>
+          <span class="text-red font-playfair italic">Papers</span>
+        </h1>
+        <p class="text-muted text-justify max-w-xl px-5">
+            My academic work focuses on multi-agent systems and normative frameworks, exploring how autonomous agents coordinate through norms and social structures in complex, distributed environments.
+        </p>
+      </section>
+    </header>
+    <main class="flex flex-col items-center">
+        <section id="papersSection" class="flex flex-col items-center gap-10 py-10 w-[80%]">
+            <div class="w-[60%] shadow-xl p-5 rounded-lg">
+                <div class="flex flex-col gap-3">
+                    <div class="flex justify-between">
+                        <div id="badgeList">
+                            <span class="bg-warm py-1 px-3 rounded-lg shadow text-dark text-sm">multi-agent</span>
+                        </div>
+                        <span class="text-sm text-muted">2024-11-01</span>
+                    </div>
+                    <h2 class="text-xl font-bold text-dark ">Automatic Generation of Thematic Maps Using Multi-Agent Systems</h2>
+                    <span class="text-sm text-light">I. H. Maminiaina, H. Rakotonirainy, J. Dinaharison, T. Ramarozaka, A. Razafinimaro</span>
+                    <p class="text-dark text-sm">
+                        This paper presents an approach to automating the generation of thematic maps through multi-agent systems. Agents collaborate to process, interpret, and spatially organize geographic data, reducing the manual effort typically required in cartographic workflows. The system is demonstrated and evaluated within the GAMA simulation platform.
+                    </p>
+                </div>
+                <hr class="my-5 border-gray-300" />
+                <button class="text-red underline flex items-center gap-1"><i class="fa-solid fa-file-pdf"></i> Read PDF</button>
+            </div>
+        </section>
+        <div
+        id="confirm"
+        class="hidden fixed bottom-5 left-1/2 transform z-30 -translate-x-1/2 w-[30vw] items-center justify-center bg-green-600 p-3 rounded-lg shadow filter"
+      >
+        <span class="text-3xl m-2">🎉</span>
+        <div class="text-white">
+          <h3 class="font-bold">Thank you so much for buying our courses!</h3>
+          <p class="text-sm">
+            we'll be in touch shortly with all the details.Welcome aboard!
+          </p>
+        </div>
+        <i id="closeAlert" class="fa-solid text-sm fa-times text-white"></i>
+      </div>
+    </main>
+        <footer
+      class="flex flex-col items-center justify-center gap-5 bg-red py-15"
+    >
+      <h3 class="text-3xl text-white font-playfair font-bold">
+        Interested in collaborating?
+      </h3>
+      <p class="text-white w-130 text-center text-sm">
+        open to co-authoring, peer review, and academic consulting engagements.
+      </p>
+      <button
+        class="py-3 px-8 rounded-3xl border border-white text-white hover:bg-white hover-text-red"
+      >
+        Get in touch
+      </button>
+    </footer>
+    <script src="JS/research.js"></script>
+    <script src="JS/cart.js"></script>
+  </body>
+</html>

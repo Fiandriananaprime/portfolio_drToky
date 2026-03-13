@@ -109,6 +109,33 @@ const courses = [
   },
 ];
 const cartList = document.getElementById("cartList");
+let alertTimeout = null;
+let confirmTimeout = null;
+
+const closeAlertBtn = document.getElementById("closeAlert");
+if (closeAlertBtn) {
+  closeAlertBtn.addEventListener("click", () => {
+
+    const confBox = document.getElementById("confirm");
+    if (confBox) {
+      confBox.classList.remove("show");
+    }
+    if (confirmTimeout) {
+      clearTimeout(confirmTimeout);
+      confirmTimeout = null;
+    }
+
+    const alertBox = document.getElementById("alert");
+    if (alertBox) {
+      alertBox.classList.remove("show");
+    }
+    if (alertTimeout) {
+      clearTimeout(alertTimeout);
+      alertTimeout = null;
+    }
+  });
+}
+
 let timeOut;
 document.addEventListener("DOMContentLoaded", () => {
   updateCartCount();
@@ -140,8 +167,14 @@ if (cartList) {
       const conf = document.getElementById("confirm");
       if (conf) {
         conf.classList.add("show");
-        setTimeout(() => {
+        // clear any previous confirm timeout
+        if (confirmTimeout) {
+          clearTimeout(confirmTimeout);
+          confirmTimeout = null;
+        }
+        confirmTimeout = setTimeout(() => {
           conf.classList.remove("show");
+          confirmTimeout = null;
         }, 5000);
       }
       return;
@@ -166,9 +199,15 @@ function showAlert(message) {
     <span class="text-sm">${message}</span>
   </div>
   `;
-  setTimeout(() => {
+  // clear any existing alert timeout so we don't race
+  if (alertTimeout) {
+    clearTimeout(alertTimeout);
+    alertTimeout = null;
+  }
+  alertTimeout = setTimeout(() => {
     alertBox.classList.remove("show");
-  }, 2000);
+    alertTimeout = null;
+  }, 1500);
 }
 if (cartToggle) {
   cartToggle.addEventListener("click", (e) => {

@@ -20,7 +20,7 @@
       href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
       rel="stylesheet"
     />
-    <title>Document</title>
+    <title>Courses</title>
   </head>
   <body>
     <header class="bg-warm">
@@ -64,7 +64,7 @@
           <span class="text-dark font-playfair">All</span>
           <span class="text-red font-playfair italic">Courses</span>
         </h1>
-        <p class="text-dark text-center max-w-2xl px-5">
+        <p class="text-muted text-center max-w-xl px-5">
           Online and offline courses across development, translation, and
           research. Find the one that fits your level and goals.
         </p>
@@ -171,7 +171,7 @@
       </div>
       <div
         id="confirm"
-        class="opacity-0 flex fixed bottom-5 left-1/2 transform z-30 -translate-x-1/2 w-[30vw] items-center justify-center bg-green-600 p-3 rounded-lg shadow filter"
+        class="hidden fixed bottom-5 left-1/2 transform z-30 -translate-x-1/2 w-[30vw] items-center justify-center bg-green-600 p-3 rounded-lg shadow filter"
       >
         <span class="text-3xl m-2">🎉</span>
         <div class="text-white">
@@ -180,7 +180,7 @@
             we'll be in touch shortly with all the details.Welcome aboard!
           </p>
         </div>
-        <i class="fa-solid text-sm fa-times text-white"></i>
+        <i id="closeAlert" class="fa-solid text-sm fa-times text-white"></i>
       </div>
       <div
         id="alert"
@@ -193,7 +193,7 @@
       <h3 class="text-3xl text-white font-playfair font-bold">
         Not sure where to start?
       </h3>
-      <p class="text-white w-130 text-center">
+      <p class="text-white text-sm w-130 text-center">
         Book a free discover call and find the course that fits your goals and
         schedule.
       </p>
