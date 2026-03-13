@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="tailwind.css" />
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="tailwind.css" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.3.2/css/flag-icons.min.css"
@@ -20,7 +20,7 @@
       href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
       rel="stylesheet"
     />
-    <title>Research</title>
+    <title>Courses</title>
   </head>
   <body>
     <header class="bg-warm">
@@ -56,26 +56,47 @@
         class="flex flex-col justify-center items-center gap-5 py-10 mt-15 shadow"
       >
         <h5 class="flex justify-center items-center gap-5 text-light font-bold">
-          <span class="w-10 h-1 bg-red"></span>Academic Work<span
+          <span class="w-10 h-1 bg-red"></span>WRITING<span
             class="w-10 h-1 bg-red-dark"
           ></span>
         </h5>
         <h1 class="flex justify-center items-center gap-3 text-6xl font-bold">
-          <span class="text-dark font-playfair">Research</span>
-          <span class="text-red font-playfair italic">Papers</span>
+          <span class="text-dark font-playfair">The</span>
+          <span class="text-red font-playfair italic">Blog</span>
         </h1>
-        <p class="text-muted text-justify max-w-xl px-5">
-            My academic work focuses on multi-agent systems and normative frameworks, exploring how autonomous agents coordinate through norms and social structures in complex, distributed environments.
+        <p class="text-muted text-center max-w-xl px-5">
+            Thoughts on teaching, software engineering, languages, and everything in between
         </p>
       </section>
     </header>
-    <main class="flex flex-col items-center">
-        <section id="papersSection" class="flex flex-col items-center gap-10 py-10 w-[80%]">
+    <main>
+        <section class="flex w-full px-5 py-10 gap-10 justify-center">
+            <div class="w-[70%] flex flex-col gap-5">
+              <div id="blogContainer" class="w-full flex flex-col gap-5">
+              </div>
+              <div id="pagination" class="w-full flex justify-center mt-5"></div>
+            </div>
+            <aside class="w-[22%] flex flex-col gap-5">
+                <div id="archiveContainer"></div>
+                <div class="w-full shadow-lg p-5 flex flex-col gap-3 rounded-2xl bg-warm">
+                  <div class="text-muted text-sm flex gap-3 items-center"><hr class="text-red border-2 w-[10%]">Newsletter</div>
+                  <p class="text-xs">Get new article straight into your inbox. No spam, ever.</p>
+                  <input type="email" placeholder="Your@email.com" class="w-full mt-3 p-2 bg-white rounded-lg focus:outline-none">
+                  <button type="submit" class="w-full mt-1 p-1 bg-red text-white rounded-lg hover:bg-red-dark">Subscribe</button>
+                </div>
+                <div class="w-full shadow-lg p-5 flex flex-col gap-3 rounded-2xl bg-warm">
+                  <div class="text-muted text-sm flex gap-3 items-center"><hr class="text-red border-2 w-[10%]">On YouTube</div>
+                  <p class="text-xs">Latest videos from the channel</p>
+                  <div id="youtubeContainer" class="flex flex-col gap-5 mt-3">
+                  </div>
+                  <a href="" class="text-red underline text-semibold underline-offset-4">View all videos →</a>
+                </div>
+            </aside>
         </section>
         <div
         id="confirm"
         class="hidden fixed bottom-5 left-1/2 transform z-30 -translate-x-1/2 w-[30vw] items-center justify-center bg-green-600 p-3 rounded-lg shadow filter"
-      >
+        >
         <span class="text-3xl m-2">🎉</span>
         <div class="text-white">
           <h3 class="font-bold">Thank you so much for buying our courses!</h3>
@@ -85,27 +106,39 @@
         </div>
         <i id="closeAlert" class="fa-solid text-sm fa-times text-white"></i>
       </div>
-          <div
+      <div
         id="alert"
         class="fixed top-[50vh] z-20 shadow-2xl left-1/2 transform -translate-x-1/2"
       ></div>
     </main>
-        <footer
+    <footer
       class="flex flex-col items-center justify-center gap-5 bg-red py-15"
     >
       <h3 class="text-3xl text-white font-playfair font-bold">
-        Interested in collaborating?
+        Want to go deeper?
       </h3>
-      <p class="text-white w-130 text-center text-sm">
-        open to co-authoring, peer review, and academic consulting engagements.
+      <p class="text-white text-sm w-130 text-center">
+        Explore the courses or get in touch for a consultation
       </p>
-      <button
-        class="py-3 px-8 rounded-3xl border border-white text-white hover:bg-white hover-text-red"
-      >
-        Get in touch
-      </button>
+      <div class="flex gap-3">
+        <button
+          class="py-3 px-8 rounded-3xl border border-white text-red bg-white"
+        >
+        <a href="courses.html">
+          Browse Courses
+        </a>
+        </button>
+        <button
+          class="py-3 px-8 rounded-3xl border border-white text-white hover:bg-white hover-text-red"
+        >
+          <a href="">
+            Collaborate
+          </a>
+        </button>
+        
+      </div>
     </footer>
-    <script src="JS/research.js"></script>
+    <script src="JS/blog.js"></script>
     <script src="JS/cart.js"></script>
   </body>
 </html>
