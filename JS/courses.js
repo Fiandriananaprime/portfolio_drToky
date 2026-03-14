@@ -483,6 +483,9 @@ const flagsEl = document.querySelectorAll(".flags button span");
 const priceRange = document.getElementById("price-range");
 const minRange = document.getElementById("rangeMin");
 const maxRange = document.getElementById("rangeMax");
+const filterBtn = document.getElementById("filterBtn");
+const filterPanel = document.getElementById("filterPanel");
+const closeFilterBtn = document.getElementById("closeFilter");
 let searchTerm = "";
 let allowedLevels = [];
 let allowedLangs = ["MG", "FR", "EN"];
@@ -508,38 +511,49 @@ clearBtn.addEventListener("click", () => {
     rangeMinEl.dispatchEvent(new Event("input", { bubbles: true }));
   if (rangeMaxEl)
     rangeMaxEl.dispatchEvent(new Event("input", { bubbles: true }));
-  courseListEl.innerHTML = listCourse(data.courses);
+
+  currentPage = 1;
+  courseListEl.innerHTML = "";
+  listCourse(data.courses);
 });
 
 selectLevel.addEventListener("change", () => {
   const level = (selectLevel.value || "").toLowerCase();
   if (!level || level === "all") allowedLevels = [];
   else allowedLevels = [level];
-  courseListEl.innerHTML = listCourse(data.courses);
+  currentPage = 1;
+  courseListEl.innerHTML = "";
+  listCourse(data.courses);
 });
 
 selectTech.addEventListener("change", () => {
   const tech = (selectTech.value || "").toLowerCase();
   if (!tech || tech === "all") allowedTechs = [];
   else allowedTechs = [tech];
-  courseListEl.innerHTML = listCourse(data.courses);
+  currentPage = 1;
+  courseListEl.innerHTML = "";
+  listCourse(data.courses);
 });
 
 if (rangeMinEl)
-  rangeMinEl.addEventListener(
-    "input",
-    () => (courseListEl.innerHTML = listCourse(data.courses)),
-  );
+  rangeMinEl.addEventListener("input", () => {
+    currentPage = 1;
+    courseListEl.innerHTML = "";
+    listCourse(data.courses);
+  });
 if (rangeMaxEl)
-  rangeMaxEl.addEventListener(
-    "input",
-    () => (courseListEl.innerHTML = listCourse(data.courses)),
-  );
+  rangeMaxEl.addEventListener("input", () => {
+    currentPage = 1;
+    courseListEl.innerHTML = "";
+    listCourse(data.courses);
+  });
 
 if (searchEl) {
   searchEl.addEventListener("input", (e) => {
     searchTerm = (e.target.value || "").toLowerCase().trim();
-    courseListEl.innerHTML = listCourse(data.courses);
+    currentPage = 1;
+    courseListEl.innerHTML = "";
+    listCourse(data.courses);
   });
 }
 
@@ -555,79 +569,69 @@ document.querySelectorAll(".flags button").forEach((btn) => {
       span.classList.add("active");
       allowedLangs.push(lang);
     }
-
-    courseListEl.innerHTML = listCourse(data.courses);
+    currentPage = 1;
+    courseListEl.innerHTML = "";
+    listCourse(data.courses);
   });
 });
+let currentPage = 1;
+const itemsPerPage = 5;
 
 function listCourse(courses) {
   if (!Array.isArray(courses)) return "";
 
   const filteredCourses = courses
-    .filter((course) => {
+    .filter(course => {
       if (!searchTerm) return true;
-      const hay = (
-        (course.title || "") +
-        " " +
-        (course.description || "") +
-        " " +
-        (course.technologies || []).join(" ")
-      ).toLowerCase();
+      const hay = ((course.title || "") + " " + (course.description || "") + " " + (course.technologies || []).join(" ")).toLowerCase();
       return hay.includes(searchTerm);
     })
-    .filter((course) => {
-      if (!allowedLevels.length) return true;
-      return allowedLevels.includes((course.level || "beginner").toLowerCase());
-    })
-    .filter((course) => {
+    .filter(course => !allowedLevels.length || allowedLevels.includes((course.level || "beginner").toLowerCase()))
+    .filter(course => {
       if (!allowedTechs.length) return true;
-      const techs = Array.isArray(course.technologies)
-        ? course.technologies.map((t) => (t || "").toLowerCase())
-        : [];
-      return allowedTechs.some((t) => techs.includes(t));
+      const techs = Array.isArray(course.technologies) ? course.technologies.map(t => (t || "").toLowerCase()) : [];
+      return allowedTechs.some(t => techs.includes(t));
     })
-    .filter((course) => {
+    .filter(course => {
       if (!rangeMinEl && !rangeMaxEl) return true;
-      const min = rangeMinEl
-        ? Number(rangeMinEl.value)
-        : Number.NEGATIVE_INFINITY;
-      const max = rangeMaxEl
-        ? Number(rangeMaxEl.value)
-        : Number.POSITIVE_INFINITY;
+      const min = rangeMinEl ? Number(rangeMinEl.value) : Number.NEGATIVE_INFINITY;
+      const max = rangeMaxEl ? Number(rangeMaxEl.value) : Number.POSITIVE_INFINITY;
       const price = Number(course.price) || 0;
       return price >= min && price <= max;
     })
-    .filter((course) =>
-      allowedLangs.includes((course.language || "").toUpperCase()),
-    );
+    .filter(course => allowedLangs.includes((course.language || "").toUpperCase()));
+
   if (resultCountEl) {
     if (filteredCourses.length === data.courses.length) {
       resultCountEl.textContent = "";
       resultCountEl.style.display = "none";
-    } 
-    else if (filteredCourses.length === 0) {
+    } else if (filteredCourses.length === 0) {
       resultCountEl.textContent = "No items match your filters. Try reducing or clearing them";
       resultCountEl.style.display = "inline";
-    }
-    else {
+    } else {
       resultCountEl.textContent = `${filteredCourses.length} course${filteredCourses.length !== 1 ? "s" : ""} found`;
       resultCountEl.style.display = "inline";
     }
   }
-  return filteredCourses
-    .map((course) => {
-      const level = (course.level || "beginner").toLowerCase();
-      const lang = (course.language || "").toUpperCase();
-      const tech =
-        Array.isArray(course.technologies) && course.technologies.length
-          ? course.technologies[0]
-          : "";
-      const price = course.price;
-      const thumb = course.thumbnail;
-      console.log(filteredCourses.length);
 
-      return `
-      <div class="w-[20vw] bg-white rounded-xl shadow overflow-hidden card relative mb-4" data-level="${level}">
+  const isMobile = window.innerWidth < 1024;
+  let coursesToShow = filteredCourses;
+
+  if (isMobile) {
+    const start = (currentPage - 1) * itemsPerPage;
+    const end = start + itemsPerPage;
+    coursesToShow = filteredCourses.slice(start, end);
+  }
+
+  coursesToShow.forEach(course => {
+    const level = (course.level || "beginner").toLowerCase();
+    const lang = (course.language || "").toUpperCase();
+    const tech = Array.isArray(course.technologies) && course.technologies.length ? course.technologies[0] : "";
+    const price = course.price;
+    const thumb = course.thumbnail;
+
+    courseListEl.innerHTML += `
+      <div class="w-[20vw] min-w-[300px] bg-white rounded-xl shadow overflow-hidden card relative mb-4" data-level="${level}">
         <div class="badge flex gap-1 absolute z-10 top-2 left-2">
           <span class="langue rounded-xl bg-white text-dark text-sm py-1 px-2">${lang}</span>
           ${tech ? `<span class="tech rounded-xl bg-dark text-white text-sm py-1 px-2">${tech}</span>` : ""}
@@ -643,13 +647,38 @@ function listCourse(courses) {
           <p class="text-sm text-dark line-clamp-3">${course.description}</p>
           <div class="flex gap-2 items-center justify-center">
             <button class="bg-white text-red hover:scale border border-red py-2 px-4 rounded-lg shadow-xl" id="learnMore">Learn more</button>
-            <button class=" cartBtn bg-red text-white py-2 px-4 rounded-lg shadow-xl" data-course-id="${course.id}">Add to cart</button>
+            <button class="cartBtn bg-red text-white py-2 px-4 rounded-lg shadow-xl" data-course-id="${course.id}">Add to cart</button>
           </div>
         </article>
       </div>
     `;
-    })
-    .join("\n");
+  });
+
+  if (isMobile && filteredCourses.length > currentPage * itemsPerPage) {
+    const loadMoreBtn = document.getElementById("loadMore");
+    loadMoreBtn.style.display = "block";
+    loadMoreBtn.onclick = () => {
+      currentPage++;
+      listCourse(courses);
+    };
+  } else {
+    const loadMoreBtn = document.getElementById("loadMore");
+    if (loadMoreBtn) loadMoreBtn.style.display = "none";
+  }
 }
 
-courseListEl.innerHTML = listCourse(data.courses);
+window.addEventListener("resize", () => {
+  currentPage = 1;
+  courseListEl.innerHTML = "";
+  listCourse(data.courses);
+});
+
+currentPage = 1;
+courseListEl.innerHTML = "";
+listCourse(data.courses);
+filterBtn.addEventListener("click", () => {
+  filterPanel.classList.toggle("hidden");
+});
+closeFilterBtn.addEventListener("click", () => {
+  filterPanel.classList.add("hidden");
+});

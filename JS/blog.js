@@ -93,15 +93,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const date = post.creationDate ? new Date(post.creationDate).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) : '';
     const tagsHtml = (post.tags || []).map(t => `<span class="bg-blue-500 text-white px-3 py-1 rounded-full text-xs mr-2">${t}</span>`).join('');
     return `
-      <div class="w-full rounded-lg shadow-lg p-4 flex gap-5 mb-6">
-        <img src="${post.thumbnail || 'assets/square-image.jpg'}" class="w-[15%] rounded-xl" alt="">
+      <div class="w-full rounded-lg shadow-lg p-4 flex flex-col lg:flex-row gap-5 mb-6">
+        <img src="${post.thumbnail || 'assets/square-image.jpg'}" class="w-[100%] lg:w-[15%] rounded-xl" alt="">
         <div class="flex flex-col justify-between w-[85%]">
           <div>
             <h3 class="text-2xl text-red font-bold">${post.title}</h3>
             <span class="font-bold text-sm">${date}</span>
             <p class="text-sm mt-2">${post.description}</p>
           </div>
-          <div class="badgeContainer mt-3">
+          <div class="badgeContainer mt-3 w-full flex flex-wrap gap-2">
             ${tagsHtml}
           </div>
         </div>
@@ -110,7 +110,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   const blogContainer = document.getElementById('blogContainer');
-  const postsPerPage = 5;
+
+  const postsPerPage = window.innerWidth >= 1024 ? 5 : 3;
+console.log(postsPerPage);
   let currentPage = 1;
 
   function showPage(page) {

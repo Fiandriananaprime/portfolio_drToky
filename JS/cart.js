@@ -189,6 +189,13 @@ if (cartList) {
 }
 const cartButton = document.querySelectorAll(".cartBtn");
 const cartToggle = document.querySelector(".cart");
+const menuBtn = document.getElementById("menuBtn");
+menuBtn.addEventListener("click", () => {
+  const navMenu = document.getElementById("navMenu");
+  if (navMenu) {
+    navMenu.classList.toggle("hidden");
+  }
+});
 
 function showAlert(message) {
   const alertBox = document.getElementById("alert");

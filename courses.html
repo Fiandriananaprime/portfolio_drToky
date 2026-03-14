@@ -23,32 +23,45 @@
     <title>Courses</title>
   </head>
   <body>
-    <header class="bg-warm">
+    <header class="bg-warm ">
       <nav
-        class="bg-red fixed w-full top-0 z-50 flex items-center justify-between px-5 py-1"
+        class="bg-red fixed w-full top-0 z-50 flex items-center justify-between px-5 py-2"
       >
+      <div class="lg:hidden relative"> ">
+            <button id="menuBtn" class="">
+              <i class="fa-solid fa-bars text-white text-2xl"></i>
+            </button>
+            <ul id="navMenu" class=" gap-3 text-red font-bold text-playfair hidden flex flex-col items-center lg:gap-5 absolute bg-white p-3 left-0 shadow-2xl mt-4 rounded-lg">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="blog.html">Blog</a></li>
+              <li><a href="courses.html">Courses</a></li>
+              <li><a href="testimonial.html">Testimonials</a></li>
+              <li><a href="research.html">Research</a></li>
+            </ul>
+        </div>
         <a href="index.html"
-          ><img class="w-45" src="assets/logo.png" alt=""
+          ><img class="w-[10vw] min-w-[150px]" src="assets/logo.png" alt=""
         /></a>
-        <ul class="flex gap-5 text-white">
+        <ul class=" gap-5 text-white hidden lg:flex">
           <li><a href="index.html">Home</a></li>
           <li><a href="blog.html">Blog</a></li>
           <li><a href="courses.html">Courses</a></li>
           <li><a href="testimonial.html">Testimonials</a></li>
           <li><a href="research.html">Research</a></li>
         </ul>
-        <div class="relative">
+        <div class="relative flex items-center gap-3">
           <input
             type="text"
             placeholder="search anything..."
-            class="placeholder:text-white placeholder:opacity-50 text-center text-white focus:outline-none px-3 py-2 rounded-lg"
+            class="hidden lg:flex placeholder:text-white placeholder:opacity-50 text-center text-white focus:outline-none px-3 py-2 rounded-lg"
           />
+          
           <button class="relative cart">
             <i class="fa-solid fa-basket-shopping text-white text-2xl"></i>
           </button>
           <div
             id="cartList"
-            class="hidden absolute right-0 mt-2 w-[18vw] bg-white p-3 rounded-lg shadow-lg flex flex-col items-center"
+            class="hidden min-w-[250px] absolute right-0 mt-10 top-0 w-[18vw] bg-white p-3 rounded-lg shadow-lg flex flex-col items-center"
           ></div>
         </div>
       </nav>
@@ -71,10 +84,31 @@
       </section>
     </header>
     <main class="flex items-center flex-col">
-      <div
-        class="flex items-center justify-between w-[90%] bg-warm p-3 rounded-lg m-5 mb-10 shadow filter"
+      <div class="flex items-center">
+          <button
+            id="filterBtn"
+            class="lg:hidden bg-warm shadow-2xl text-xs text-muted flex items-center rounded py-2 px-3 m-5"
+          >
+            <i class="fa-solid text-red-dark  text-xl fa-filter"></i> Show filter
+          </button>
+           <div class="flex items-center rounded-lg overflow-hidden lg:hidden">
+          <input
+            id="searchInputMobile"
+            type="text"
+            placeholder="keywords..."
+            class=" placeholder:text-gray-500 placeholder:opacity-50 text-center text-gray-700 focus:outline-none bg-white border-border  px-3 py-2 focus-border-red"
+          />
+          <button class=" bg-red text-white p-2">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </div>
+      </div>
+
+      <div id="filterPanel"
+        class="flex fixed hidden bottom-0 lg:static z-30 items-center justify-between lg:w-[90%] lg:flex flex-col lg:flex-row gap-3  lg:gap-0 w-[100%] bg-warm lg:p-3 p-3 pb-5 rounded-lg m-5 mb-0 lg:mb-5 lg:mb-10 shadow filter"
       >
-        <div class="flex flex-col items-center">
+        <button class="text-2xl font-extrabold text-red absolute top-3 right-3" id="closeFilter"><i class="fa-solid fa-x"></i></button>
+        <div class="flex flex-col items-center gap-1 mt-5 lg:mt-0">
           <h3>Language</h3>
           <div class="flags">
             <button>
@@ -88,12 +122,12 @@
             </button>
           </div>
         </div>
-        <div>
-          <h3>Technologie</h3>
+        <div >
+          <h3 class="mb-1 lg:mb-0">Technologie</h3>
           <select
             name=""
             id="selectTech"
-            class="bg-white border-border text-gray-700 rounded-lg b px-3 py-2 focus-border-red"
+            class="bg-white border-border text-gray-700 rounded-lg b text-md px-3 py-2 focus-border-red"
           >
             <option value="all">All technologies</option>
             <option value="javascript">JavaScript</option>
@@ -103,7 +137,7 @@
           </select>
         </div>
         <div>
-          <h3>Level</h3>
+          <h3 class="mb-1 lg:mb-0">Level</h3>
           <select
             name=""
             id="selectLevel"
@@ -116,7 +150,7 @@
           </select>
         </div>
         <div>
-          <h3 class="flex-col flex-wrap">
+          <h3 class="flex-col flex-wrap mb-1 lg:mb-0">
             Price Range
             <span id="price-range" class="text-red-dark text-sm font-bold"
               >0Ar-300.000Ar</span
@@ -143,13 +177,13 @@
             </div>
           </h3>
         </div>
-        <div>
-          <h3>Search</h3>
+        <div class="hidden lg:block">
+          <h3 class="mb-1 lg:mb-0">Search</h3>
           <input
             id="searchInput"
             type="text"
             placeholder="keywords..."
-            class="placeholder:text-gray-500 placeholder:opacity-50 text-center text-gray-700 focus:outline-none bg-white border-border rounded-lg px-3 py-2 focus-border-red"
+            class=" placeholder:text-gray-500 placeholder:opacity-50 text-center text-gray-700 focus:outline-none bg-white border-border rounded-lg px-3 py-2 focus-border-red"
           />
         </div>
         <button
@@ -159,14 +193,17 @@
           Clear all
         </button>
       </div>
-      <div class="flex justify-center"></div>
+      
       <div class="shadow-2xl pt-10 w-full flex flex-col">
         <span id="resultCount" class="text-muted p-2 ml-30"></span>
-        <div class="w-full flex justify-center">
+        <div class="w-full flex flex-col items-center">
           <section
             id="courseList"
             class="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-10"
           ></section>
+          <button id="loadMore" class=" block lg:hidden text-muted shadow-3xl  py-2 px-4 rounded-lg ">
+            See More
+          </button>
         </div>
       </div>
       <div
@@ -193,7 +230,7 @@
       <h3 class="text-3xl text-white font-playfair font-bold">
         Not sure where to start?
       </h3>
-      <p class="text-white text-sm w-130 text-center">
+      <p class="text-white text-sm w-[40%] min-w-[300px] text-center">
         Book a free discover call and find the course that fits your goals and
         schedule.
       </p>

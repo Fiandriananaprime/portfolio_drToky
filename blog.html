@@ -25,30 +25,43 @@
   <body>
     <header class="bg-warm">
       <nav
-        class="bg-red fixed w-full top-0 z-50 flex items-center justify-between px-5 py-1"
+        class="bg-red fixed w-full top-0 z-50 flex items-center justify-between px-5 py-2"
       >
+      <div class="lg:hidden relative"> ">
+            <button id="menuBtn" class="">
+              <i class="fa-solid fa-bars text-white text-2xl"></i>
+            </button>
+            <ul id="navMenu" class=" gap-3 text-red font-bold text-playfair hidden flex flex-col items-center lg:gap-5 absolute bg-white p-3 left-0 shadow-2xl mt-4 rounded-lg">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="blog.html">Blog</a></li>
+              <li><a href="courses.html">Courses</a></li>
+              <li><a href="testimonial.html">Testimonials</a></li>
+              <li><a href="research.html">Research</a></li>
+            </ul>
+        </div>
         <a href="index.html"
-          ><img class="w-45" src="assets/logo.png" alt=""
+          ><img class="w-[10vw] min-w-[150px]" src="assets/logo.png" alt=""
         /></a>
-        <ul class="flex gap-5 text-white">
+        <ul class=" gap-5 text-white hidden lg:flex">
           <li><a href="index.html">Home</a></li>
           <li><a href="blog.html">Blog</a></li>
           <li><a href="courses.html">Courses</a></li>
           <li><a href="testimonial.html">Testimonials</a></li>
           <li><a href="research.html">Research</a></li>
         </ul>
-        <div class="relative">
+        <div class="relative flex items-center gap-3">
           <input
             type="text"
             placeholder="search anything..."
-            class="placeholder:text-white placeholder:opacity-50 text-center text-white focus:outline-none px-3 py-2 rounded-lg"
+            class="hidden lg:flex placeholder:text-white placeholder:opacity-50 text-center text-white focus:outline-none px-3 py-2 rounded-lg"
           />
+          
           <button class="relative cart">
             <i class="fa-solid fa-basket-shopping text-white text-2xl"></i>
           </button>
           <div
             id="cartList"
-            class="hidden absolute right-0 mt-2 w-[18vw] bg-white p-3 rounded-lg shadow-lg flex flex-col items-center"
+            class="hidden min-w-[250px] absolute right-0 mt-10 top-0 w-[18vw] bg-white p-3 rounded-lg shadow-lg flex flex-col items-center"
           ></div>
         </div>
       </nav>
@@ -71,12 +84,12 @@
     </header>
     <main>
         <section class="flex w-full px-5 py-10 gap-10 justify-center">
-            <div class="w-[70%] flex flex-col gap-5">
+            <div class="w-[70%] min-w-[300px] flex flex-col gap-5">
               <div id="blogContainer" class="w-full flex flex-col gap-5">
               </div>
               <div id="pagination" class="w-full flex justify-center mt-5"></div>
             </div>
-            <aside class="w-[22%] flex flex-col gap-5">
+            <aside class="w-[22%] hidden lg:flex flex-col gap-5">
                 <div id="archiveContainer"></div>
                 <div class="w-full shadow-lg p-5 flex flex-col gap-3 rounded-2xl bg-warm">
                   <div class="text-muted text-sm flex gap-3 items-center"><hr class="text-red border-2 w-[10%]">Newsletter</div>
@@ -117,7 +130,7 @@
       <h3 class="text-3xl text-white font-playfair font-bold">
         Want to go deeper?
       </h3>
-      <p class="text-white text-sm w-130 text-center">
+      <p class="text-white text-smw-[40%] min-w-[300px] text-center">
         Explore the courses or get in touch for a consultation
       </p>
       <div class="flex gap-3">

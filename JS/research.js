@@ -51,10 +51,10 @@ function renderResearchCard(paper) {
   const date = paper.publishedDate ? new Date(paper.publishedDate).toISOString().slice(0,10) : '';
   const tagsHtml = (paper.tags || []).map(t => `<span class="bg-warm py-1 px-3 rounded-lg shadow text-dark text-sm mr-2">${t}</span>`).join('');
   return `
-    <div class="w-[65%] shadow-xl p-5 rounded-lg">
+    <div class="w-[65%] min-w-[300px] shadow-xl p-5 rounded-lg">
       <div class="flex flex-col gap-4">
         <div class="flex justify-between">
-          <div class="badgeList mt-3">
+          <div class="badgeList mt-3 flex flex-wrap gap-2 w-[80%] ">
             ${tagsHtml}
           </div>
           <span class="text-sm text-muted">${date}</span>
