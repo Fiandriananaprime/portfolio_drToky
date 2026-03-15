@@ -19,31 +19,88 @@
     <title>Document</title>
   </head>
   <body>
-    <header>
-      <nav class="bg-red flex items-center justify-between px-5 py-1">
+    <header class="bg-warm">
+      <nav
+        class="bg-red fixed w-full top-0 z-50 flex items-center justify-between px-5 py-2"
+      >
+        <div class="lg:hidden relative">
+          ">
+          <button id="menuBtn" class="">
+            <i class="fa-solid fa-bars text-white text-2xl"></i>
+          </button>
+          <ul
+            id="navMenu"
+            class="gap-3 text-red font-bold text-playfair hidden flex flex-col items-center lg:gap-5 absolute bg-white p-3 left-0 shadow-2xl mt-4 rounded-lg"
+          >
+            <li><a href="index.html">Home</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="courses.html">Courses</a></li>
+            <li><a href="testimonial.html">Testimonials</a></li>
+            <li><a href="research.html">Research</a></li>
+          </ul>
+        </div>
         <a href="index.html"
-          ><img class="w-45" src="assets/logo.png" alt=""
+          ><img class="w-[10vw] min-w-[150px]" src="assets/logo.png" alt=""
         /></a>
-        <ul class="flex gap-5 text-white">
+        <ul class="gap-5 text-white hidden lg:flex">
           <li><a href="index.html">Home</a></li>
           <li><a href="blog.html">Blog</a></li>
           <li><a href="courses.html">Courses</a></li>
           <li><a href="testimonial.html">Testimonials</a></li>
           <li><a href="research.html">Research</a></li>
         </ul>
-        <div>
+        <div class="relative flex items-center gap-3">
           <input
             type="text"
             placeholder="search anything..."
-            class="placeholder:text-white placeholder:opacity-50 text-center text-white focus:outline-none"
+            class="hidden lg:flex placeholder:text-white placeholder:opacity-50 text-center text-white focus:outline-none px-3 py-2 rounded-lg"
           />
-          <button id="cart">
+
+          <button class="relative cart">
             <i class="fa-solid fa-basket-shopping text-white text-2xl"></i>
           </button>
+          <div
+            id="cartList"
+            class="hidden min-w-[250px] absolute right-0 mt-10 top-0 w-[18vw] bg-white p-3 rounded-lg shadow-lg flex flex-col items-center"
+          ></div>
         </div>
       </nav>
     </header>
-    <main></main>
+    <main>
+<section class="flex justify-center items-center min-h-screen bg-gray-100">
+
+  <div class="flex items-center gap-10">
+
+    <!-- Texte -->
+    <div>
+      <h2 class="text-4xl font-bold mb-4">
+        Mon titre
+      </h2>
+
+      <p class="text-gray-600 mb-6">
+        Ceci est un petit texte de présentation pour expliquer le contenu.
+      </p>
+
+      <div class="flex gap-4">
+        <button class="bg-blue-600 text-white px-5 py-2 rounded">
+          Commencer
+        </button>
+
+        <button class="border px-5 py-2 rounded">
+          En savoir plus
+        </button>
+      </div>
+    </div>
+
+    <!-- Image -->
+    <div>
+      <img src="assets/square-image.jpg" class="w-80 h-80 rounded-full object-cover border-40 border-red-700 shadow-custom">
+    </div>
+
+  </div>
+
+</section>
+    </main>
     <footer></footer>
   </body>
 </html>
