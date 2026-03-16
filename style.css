@@ -142,7 +142,6 @@ button:hover {
   transition: all 0.3s ease;
 }
 #papersSection > div:hover {
-  
   transform: translateY(-5px);
   transition: all 0.3s ease;
 }
@@ -157,6 +156,10 @@ button:hover {
 }
 
 /*Home */
-.shadow-custom{
- box-shadow: 6px 6px 12px rgba(0,0,0,0.25);
+.shadow-custom {
+  box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.25);
+}
+
+.photo-ring {
+  background: linear-gradient(135deg, #f9c0c0 0%, #e5e0d8 40%, #f9f6f1 100%);
 }
