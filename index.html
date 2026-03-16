@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="tailwind.css" />
+    <script src="JS/tailwindconfig.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <script src="JS/tailwind.config.js"defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
       rel="stylesheet"
@@ -20,30 +20,26 @@
     <title>Document</title>
   </head>
   <body>
-    <header class="bg-warm">
+    <header class="bg-warm ">
       <nav
         class="bg-red fixed w-full top-0 z-50 flex items-center justify-between px-5 py-2"
       >
-        <div class="lg:hidden relative">
-          ">
-          <button id="menuBtn" class="">
-            <i class="fa-solid fa-bars text-white text-2xl"></i>
-          </button>
-          <ul
-            id="navMenu"
-            class="gap-3 text-red font-bold text-playfair hidden flex flex-col items-center lg:gap-5 absolute bg-white p-3 left-0 shadow-2xl mt-4 rounded-lg"
-          >
-            <li><a href="index.html">Home</a></li>
-            <li><a href="blog.html">Blog</a></li>
-            <li><a href="courses.html">Courses</a></li>
-            <li><a href="testimonial.html">Testimonials</a></li>
-            <li><a href="research.html">Research</a></li>
-          </ul>
+      <div class="lg:hidden relative">
+            <button id="menuBtn" class="">
+              <i class="fa-solid fa-bars text-white text-2xl"></i>
+            </button>
+            <ul id="navMenu" class=" gap-3 text-red font-bold text-playfair hidden flex flex-col items-center lg:gap-5 absolute bg-white p-3 left-0 shadow-2xl mt-4 rounded-lg">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="blog.html">Blog</a></li>
+              <li><a href="courses.html">Courses</a></li>
+              <li><a href="testimonial.html">Testimonials</a></li>
+              <li><a href="research.html">Research</a></li>
+            </ul>
         </div>
         <a href="index.html"
           ><img class="w-[10vw] min-w-[150px]" src="assets/logo.png" alt=""
         /></a>
-        <ul class="gap-5 text-white hidden lg:flex">
+        <ul class=" gap-5 text-white hidden lg:flex">
           <li><a href="index.html">Home</a></li>
           <li><a href="blog.html">Blog</a></li>
           <li><a href="courses.html">Courses</a></li>
@@ -56,7 +52,7 @@
             placeholder="search anything..."
             class="hidden lg:flex placeholder:text-white placeholder:opacity-50 text-center text-white focus:outline-none px-3 py-2 rounded-lg"
           />
-
+          
           <button class="relative cart">
             <i class="fa-solid fa-basket-shopping text-white text-2xl"></i>
           </button>
@@ -239,6 +235,8 @@
       </section>
     </main>
     <footer></footer>
-     <script src="JS/courses.js"></script>
+    <script src="JS/courses.js"></script>
+    <script src="JS/cart.js"></script>
+    <script src="JS/range.js"></script>
   </body>
 </html>
