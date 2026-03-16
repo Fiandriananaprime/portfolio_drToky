@@ -19,7 +19,7 @@
 .font-playfair {
   font-family: "Playfair Display", serif !important;
 }
-* {
+body {
   font-family: "DM Sans", sans-serif;
 }
 .border {
