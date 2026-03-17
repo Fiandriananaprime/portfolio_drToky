@@ -206,7 +206,6 @@ function showAlert(message) {
     <span class="text-sm">${message}</span>
   </div>
   `;
-  // clear any existing alert timeout so we don't race
   if (alertTimeout) {
     clearTimeout(alertTimeout);
     alertTimeout = null;
@@ -233,12 +232,6 @@ if (cartToggle) {
     }, 5000);
   });
 }
-cartButton.forEach((btn) => {
-  btn.addEventListener("click", (e) => {
-    const courseId = parseInt(e.target.getAttribute("data-course-id"));
-    addToCart(courseId);
-  });
-});
 if (cartList) {
   cartList.addEventListener("mouseenter", () => {
     if (timeOut) clearTimeout(timeOut);
