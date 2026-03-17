@@ -193,7 +193,7 @@ function updateCartCount() {
   cartBtn.setAttribute("data-count", String(cart.length));
 
   let cartContent = "";
-
+  let totalSection;
   if (cart.length === 0) {
     cartList.style.display = "none";
     totalSection = "";
