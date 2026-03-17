@@ -41,6 +41,7 @@ function setupSearchListener() {
 }
 
 function listCourse(courses) {
+  if (!courseListEl) return;
   const filtered = courses
     .filter((c) => {
       const hay =
@@ -199,13 +200,12 @@ if (closeFilterBtn) closeFilterBtn.addEventListener("click", () =>
 );
 
 document.addEventListener('DOMContentLoaded', () => {
-  // attach listeners that rely on DOM elements and initialize listing
   currentPage = 1;
   setupSearchListener();
-  if (courseListEl) listCourse(data.courses);
+  listCourse(data.courses);
   window.addEventListener("resize", () => {
     currentPage = 1;
     setupSearchListener();
-    if (courseListEl) listCourse(data.courses);
+    listCourse(data.courses);
   });
 });

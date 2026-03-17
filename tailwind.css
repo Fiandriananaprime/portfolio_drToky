@@ -13,6 +13,11 @@
   --color-border: #e5e0d8;
   --color-border-light: #f0ece4;
 }
+
+html .font-playfair {
+  font-family: "Playfair Display", serif;
+}
+
 .font-DM {
   font-family: "DM Sans", sans-serif;
 }

@@ -30,7 +30,7 @@ if (closeAlertBtn) {
 let timeOut;
 document.addEventListener("DOMContentLoaded", () => {
   updateCartCount();
-  cartList.innerHTML = updateCartCount();
+  if (cartList) cartList.innerHTML = updateCartCount();
 });
 if (cartList) {
   cartList.addEventListener("click", (e) => {
@@ -80,7 +80,7 @@ if (cartList) {
 const cartButton = document.querySelectorAll(".cartBtn");
 const cartToggle = document.querySelector(".cart");
 const menuBtn = document.getElementById("menuBtn");
-menuBtn.addEventListener("click", () => {
+if (menuBtn) menuBtn.addEventListener("click", () => {
   const navMenu = document.getElementById("navMenu");
   if (navMenu) {
     navMenu.classList.toggle("hidden");
@@ -167,7 +167,7 @@ function addToCart(id) {
     cart.push(id);
     localStorage.setItem("cart", JSON.stringify(cart));
     updateCartCount();
-    cartList.innerHTML = updateCartCount();
+  if (cartList) cartList.innerHTML = updateCartCount();
     cartList.style.display = "block";
     if (timeOut) clearTimeout(timeOut);
     timeOut = setTimeout(() => {
@@ -247,11 +247,11 @@ function removeFromCart(id) {
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
   cart = cart.filter((itemId) => itemId !== id);
   localStorage.setItem("cart", JSON.stringify(cart));
-  cartList.innerHTML = updateCartCount();
+  if (cartList) cartList.innerHTML = updateCartCount();
 }
 function closeCart() {
   if (!cartList) return;
   clearTimeout(timeOut);
   cartList.style.display = "none";
 }
-cartList.innerHTML = updateCartCount();
+if (cartList) cartList.innerHTML = updateCartCount();

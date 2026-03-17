@@ -66,7 +66,7 @@
         </div>
       </nav>
     </header>
-    <main class="bg-warm font-sans flex flex-col gap-24 pt-20 pb-20">
+    <main class="bg-warm font-sans flex flex-col gap-24 pt-20">
       <section class="w-full max-w-6xl mx-auto px-6 sm:px-10 lg:px-16 py-40">
         <div
           class="flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-16"
@@ -77,7 +77,7 @@
           >
             <!-- Label section -->
             <p
-              class="flex items-center gap-3 text-text-muted text-[0.65rem] font-semibold tracking-[0.18em] uppercase mb-8 before:block before:w-7 before:h-[1.5px] before:bg-red"
+              class="section-label mb-6"
             >
               Portfolio &amp; Services
             </p>
@@ -244,14 +244,14 @@
           </figure>
         </div>
       </section>
-      <section class="bg-white py-40">
+      <section class="bg-white py-20">
         <div class="w-full max-w-6xl mx-auto px-6 section-padding">
           <div class="flex flex-col lg:flex-row lg:items-start gap-8 lg:gap-20">
             <!-- LEFT -->
             <div class="w-full lg:w-72 shrink-0">
               <p class="section-label mb-6">Who I am</p>
 
-              <h2 class="font-display text-dark leading-tight title-size">
+              <h2 class="font-playfair text-dark leading-tight title-size">
                 <span class="block font-bold">About</span>
                 <span class="block font-bold italic">me</span>
               </h2>
@@ -278,10 +278,78 @@
           </div>
         </div>
       </section>
+
+      <section class="w-full max-w-6xl mx-auto px-6 py-[0.2rem]">
+        <header class="text-center mb-6">
+          <p class="section-label-centered mb-3">Learning</p>
+          <h2
+            class="font-playfair text-dark leading-tight"
+            style="font-size: clamp(2rem, 5vw, 3rem)"
+          >
+            Courses <em>online</em><br />and offline
+          </h2>
+        </header>
+        <div
+          id="coursesGrid"
+          class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-6 w-full"
+        ></div>
+        <div class="flex justify-center">
+          <a href="#" class="view-all-link">View all courses →</a>
+        </div>
+      </section>
+
+      <div class="flex flex-col">
+        
+        <section class="bg-white py-30">
+          <div class="w-full max-w-6xl mx-auto px-6">
+
+          <p class="section-label mb-4">Background</p>
+          <h2
+          class="font-playfair text-dark font-bold mb-12"
+          style="font-size: clamp(2rem, 5vw, 3rem)"
+          >
+          Experience
+        </h2>
+        <div
+          id="expGrid"
+          class="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-10"
+        ></div>
+      </div>
+      </section>
+
+      <!-- SECTION CTA -->
+      <section
+        class="w-full py-24 flex flex-col items-center justify-center text-center"
+        style="background-color: var(--color-red)"
+      >
+        <h2
+          class="font-display text-white font-bold mb-4"
+          style="font-size: clamp(1.8rem, 4vw, 2.6rem)"
+        >
+        Ready to collaborate?
+        </h2>
+        <p
+          class="text-white text-sm leading-relaxed mb-8 max-w-md"
+          style="opacity: 0.9"
+        >
+          Whether you're looking for a course, a consultation, or a translation
+          — let's talk.
+        </p>
+        <a
+          href="#"
+          class="text-white text-xs font-semibold tracking-widest uppercase px-8 py-3 rounded-full transition-all duration-200"
+          style="border: 1.5px solid rgba(255, 255, 255, 0.5)"
+          onmouseover="this.style.backgroundColor = 'rgba(255,255,255,0.15)'"
+          onmouseout="this.style.backgroundColor = 'transparent'"
+        >
+          Get in touch
+        </a>
+      </section>
+    </div>
     </main>
-    <footer></footer>
     <script type="module" src="JS/home.js"></script>
-  <script src="JS/search.js"></script>
+    <script src="JS/tokimahery.data.js"></script>
+    <script src="JS/search.js"></script>
   <script type="module" src="JS/courses.js"></script>
   <script type="module" src="JS/cart.js"></script>
     <script src="JS/range.js"></script>
