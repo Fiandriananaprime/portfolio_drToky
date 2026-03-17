@@ -486,9 +486,10 @@ const closeFilterBtn = document.getElementById("closeFilter");
 const loadMoreBtn = document.getElementById("loadMore");
 const itemsPerPage = 5;
 
-let searchEl = window.innerWidth >= 1024
-  ? document.getElementById("searchInput")
-  : document.getElementById("searchInputMobile");
+let searchEl =
+  window.innerWidth >= 1024
+    ? document.getElementById("searchInput")
+    : document.getElementById("searchInputMobile");
 
 let searchTerm = "";
 let allowedLevels = [];
@@ -497,9 +498,10 @@ let allowedLangs = ["MG", "FR", "EN"];
 let currentPage = 1;
 
 function setupSearchListener() {
-  const input = window.innerWidth >= 1024
-    ? document.getElementById("searchInput")
-    : document.getElementById("searchInputMobile");
+  const input =
+    window.innerWidth >= 1024
+      ? document.getElementById("searchInput")
+      : document.getElementById("searchInputMobile");
   if (!input) return;
   input.oninput = (e) => {
     searchTerm = (e.target.value || "").toLowerCase().trim();
@@ -511,16 +513,31 @@ function setupSearchListener() {
 
 function listCourse(courses) {
   const filtered = courses
-    .filter(c => {
-      const hay = `${c.title} ${c.description} ${(c.technologies || []).join(" ")}`.toLowerCase();
+    .filter((c) => {
+      const hay =
+        `${c.title} ${c.description} ${(c.technologies || []).join(" ")}`.toLowerCase();
       return !searchTerm || hay.includes(searchTerm);
     })
-    .filter(c => !allowedLevels.length || allowedLevels.includes((c.level || "beginner").toLowerCase()))
-    .filter(c => !allowedTechs.length || (c.technologies || []).map(t => t.toLowerCase()).some(t => allowedTechs.includes(t)))
-    .filter(c => allowedLangs.includes((c.language || "").toUpperCase()))
-    .filter(c => {
-      const min = rangeMinEl ? Number(rangeMinEl.value) : Number.NEGATIVE_INFINITY;
-      const max = rangeMaxEl ? Number(rangeMaxEl.value) : Number.POSITIVE_INFINITY;
+    .filter(
+      (c) =>
+        !allowedLevels.length ||
+        allowedLevels.includes((c.level || "beginner").toLowerCase()),
+    )
+    .filter(
+      (c) =>
+        !allowedTechs.length ||
+        (c.technologies || [])
+          .map((t) => t.toLowerCase())
+          .some((t) => allowedTechs.includes(t)),
+    )
+    .filter((c) => allowedLangs.includes((c.language || "").toUpperCase()))
+    .filter((c) => {
+      const min = rangeMinEl
+        ? Number(rangeMinEl.value)
+        : Number.NEGATIVE_INFINITY;
+      const max = rangeMaxEl
+        ? Number(rangeMaxEl.value)
+        : Number.POSITIVE_INFINITY;
       return c.price >= min && c.price <= max;
     });
 
@@ -528,7 +545,8 @@ function listCourse(courses) {
     if (filtered.length === courses.length) {
       resultCountEl.style.display = "none";
     } else if (filtered.length === 0) {
-      resultCountEl.textContent = "No items match your filters. Try reducing or clearing them";
+      resultCountEl.textContent =
+        "No items match your filters. Try reducing or clearing them";
       resultCountEl.style.display = "inline";
     } else {
       resultCountEl.textContent = `${filtered.length} course${filtered.length !== 1 ? "s" : ""} found`;
@@ -545,9 +563,10 @@ function listCourse(courses) {
   }
 
   courseListEl.innerHTML = "";
-  coursesToShow.forEach(c => {
+  coursesToShow.forEach((c) => {
     const lang = (c.language || "").toUpperCase();
-    const tech = c.technologies && c.technologies.length ? c.technologies[0] : "";
+    const tech =
+      c.technologies && c.technologies.length ? c.technologies[0] : "";
     courseListEl.innerHTML += `
       <div class="w-[20vw] min-w-[300px] bg-white rounded-xl shadow overflow-hidden card relative mb-4">
         <div class="badge flex gap-1 absolute z-10 top-2 left-2">
@@ -584,7 +603,7 @@ function listCourse(courses) {
 clearBtn.addEventListener("click", () => {
   searchTerm = "";
   if (searchEl) searchEl.value = "";
-  flagsEl.forEach(f => f.classList.add("active"));
+  flagsEl.forEach((f) => f.classList.add("active"));
   priceRange.textContent = "0 - 300000 MGA";
   allowedLevels = [];
   allowedLangs = ["MG", "FR", "EN"];
@@ -593,30 +612,40 @@ clearBtn.addEventListener("click", () => {
   selectTech.value = "all";
   if (rangeMinEl) rangeMinEl.value = rangeMinEl.min || 0;
   if (rangeMaxEl) rangeMaxEl.value = rangeMaxEl.max || 300000;
-  if (rangeMinEl) rangeMinEl.dispatchEvent(new Event("input", { bubbles: true }));
-  if (rangeMaxEl) rangeMaxEl.dispatchEvent(new Event("input", { bubbles: true }));
+  if (rangeMinEl)
+    rangeMinEl.dispatchEvent(new Event("input", { bubbles: true }));
+  if (rangeMaxEl)
+    rangeMaxEl.dispatchEvent(new Event("input", { bubbles: true }));
   currentPage = 1;
   listCourse(data.courses);
 });
 
 selectLevel.addEventListener("change", () => {
   const lvl = (selectLevel.value || "").toLowerCase();
-  allowedLevels = (!lvl || lvl === "all") ? [] : [lvl];
+  allowedLevels = !lvl || lvl === "all" ? [] : [lvl];
   currentPage = 1;
   listCourse(data.courses);
 });
 
 selectTech.addEventListener("change", () => {
   const tech = (selectTech.value || "").toLowerCase();
-  allowedTechs = (!tech || tech === "all") ? [] : [tech];
+  allowedTechs = !tech || tech === "all" ? [] : [tech];
   currentPage = 1;
   listCourse(data.courses);
 });
 
-if (rangeMinEl) rangeMinEl.addEventListener("input", () => { currentPage = 1; listCourse(data.courses); });
-if (rangeMaxEl) rangeMaxEl.addEventListener("input", () => { currentPage = 1; listCourse(data.courses); });
+if (rangeMinEl)
+  rangeMinEl.addEventListener("input", () => {
+    currentPage = 1;
+    listCourse(data.courses);
+  });
+if (rangeMaxEl)
+  rangeMaxEl.addEventListener("input", () => {
+    currentPage = 1;
+    listCourse(data.courses);
+  });
 
-document.querySelectorAll(".flags button").forEach(btn => {
+document.querySelectorAll(".flags button").forEach((btn) => {
   btn.addEventListener("click", () => {
     const span = btn.querySelector("span");
     const lang = span.classList[span.classList.length - 1].toUpperCase();
@@ -633,8 +662,12 @@ document.querySelectorAll(".flags button").forEach(btn => {
   });
 });
 
-filterBtn.addEventListener("click", () => filterPanel.classList.toggle("hidden"));
-closeFilterBtn.addEventListener("click", () => filterPanel.classList.add("hidden"));
+filterBtn.addEventListener("click", () =>
+  filterPanel.classList.toggle("hidden"),
+);
+closeFilterBtn.addEventListener("click", () =>
+  filterPanel.classList.add("hidden"),
+);
 
 window.addEventListener("resize", () => {
   currentPage = 1;

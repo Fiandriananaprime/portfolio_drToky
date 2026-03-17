@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>get in touch</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="tailwind.css" />
@@ -21,28 +21,31 @@
       href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
       rel="stylesheet"
     />
-</head>
-<body>
+  </head>
+  <body>
     <header class="bg-warm">
-        <nav
+      <nav
         class="bg-red fixed w-full top-0 z-50 flex items-center justify-between px-5 py-2"
       >
-      <div class="lg:hidden relative">
-            <button id="menuBtn" class="">
-              <i class="fa-solid fa-bars text-white text-2xl"></i>
-            </button>
-            <ul id="navMenu" class=" gap-3 text-red font-bold text-playfair hidden flex flex-col items-center lg:gap-5 absolute bg-white p-3 left-0 shadow-2xl mt-4 rounded-lg">
-              <li><a href="index.html">Home</a></li>
-              <li><a href="blog.html">Blog</a></li>
-              <li><a href="courses.html">Courses</a></li>
-              <li><a href="testimonial.html">Testimonials</a></li>
-              <li><a href="research.html">Research</a></li>
-            </ul>
+        <div class="lg:hidden relative">
+          <button id="menuBtn" class="">
+            <i class="fa-solid fa-bars text-white text-2xl"></i>
+          </button>
+          <ul
+            id="navMenu"
+            class="gap-3 text-red font-bold text-playfair hidden flex flex-col items-center lg:gap-5 absolute bg-white p-3 left-0 shadow-2xl mt-4 rounded-lg"
+          >
+            <li><a href="index.html">Home</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="courses.html">Courses</a></li>
+            <li><a href="testimonial.html">Testimonials</a></li>
+            <li><a href="research.html">Research</a></li>
+          </ul>
         </div>
         <a href="index.html"
           ><img class="w-[10vw] min-w-[150px]" src="assets/logo.png" alt=""
         /></a>
-        <ul class=" gap-5 text-white hidden lg:flex">
+        <ul class="gap-5 text-white hidden lg:flex">
           <li><a href="index.html">Home</a></li>
           <li><a href="blog.html">Blog</a></li>
           <li><a href="courses.html">Courses</a></li>
@@ -55,7 +58,7 @@
             placeholder="search anything..."
             class="hidden lg:flex placeholder:text-white placeholder:opacity-50 text-center text-white focus:outline-none px-3 py-2 rounded-lg"
           />
-          
+
           <button class="relative cart">
             <i class="fa-solid fa-basket-shopping text-white text-2xl"></i>
           </button>
@@ -73,59 +76,132 @@
             class="w-10 h-1 bg-red-dark"
           ></span>
         </h5>
-        <h1 class="flex justify-center items-center gap-3 text-5xl lg:text-6xl font-bold">
+        <h1
+          class="flex justify-center items-center gap-3 text-5xl lg:text-6xl font-bold"
+        >
           <span class="text-dark font-playfair">Create </span>
           <span class="text-red font-playfair italic">together</span>
         </h1>
         <p class="text-muted text-center max-w-xl px-5">
-            Not just code. Something that matters
+          Not just code. Something that matters
         </p>
       </section>
     </header>
     <main>
-        <section class="bg-white text-dark py-12 px-6 lg:px-20">
-            <div class="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mb-12">
-                <div class="bg-white border border-light rounded-lg shadow-md p-6 flex flex-col items-center text-center">
-                    <svg class="w-8 h-8 mb-3 text-red" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M2 6v12h20V6H2zm0-2h20a2 2 0 012 2v12a2 2 0 01-2 2H2a2 2 0 01-2-2V6a2 2 0 012-2z"/>
-                    </svg>
-                    <h3 class="font-semibold mb-2">Email Me</h3>
-        <p class="text-muted mb-4">Reach out via email for collaborations and inquiries.</p>
-        <button class="bg-red hover-bg-hover text-white px-4 py-2 rounded-lg font-medium">Send an Email</button>
-        </div>
-        
-        <div class="bg-white border border-light rounded-lg shadow-md p-6 flex flex-col items-center text-center">
-            <svg class="w-8 h-8 mb-3 text-red" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.11-.27 11.72 11.72 0 003.68.59 1 1 0 011 1v3.5a1 1 0 01-1 1A18 18 0 013 5a1 1 0 011-1h3.5a1 1 0 011 1 11.72 11.72 0 00.59 3.68 1 1 0 01-.27 1.11l-2.2 2.2z"/>
+      <section class="bg-white text-dark py-12 px-6 lg:px-20">
+        <div
+          class="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mb-12"
+        >
+          <div
+            class="bg-white border border-light rounded-lg shadow-md p-6 flex flex-col items-center text-center"
+          >
+            <svg
+              class="w-8 h-8 mb-3 text-red"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M2 6v12h20V6H2zm0-2h20a2 2 0 012 2v12a2 2 0 01-2 2H2a2 2 0 01-2-2V6a2 2 0 012-2z"
+              />
+            </svg>
+            <h3 class="font-semibold mb-2">Email Me</h3>
+            <p class="text-muted mb-4">
+              Reach out via email for collaborations and inquiries.
+            </p>
+            <button
+              class="bg-red hover-bg-hover text-white px-4 py-2 rounded-lg font-medium"
+            >
+              Send an Email
+            </button>
+          </div>
+
+          <div
+            class="bg-white border border-light rounded-lg shadow-md p-6 flex flex-col items-center text-center"
+          >
+            <svg
+              class="w-8 h-8 mb-3 text-red"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.11-.27 11.72 11.72 0 003.68.59 1 1 0 011 1v3.5a1 1 0 01-1 1A18 18 0 013 5a1 1 0 011-1h3.5a1 1 0 011 1 11.72 11.72 0 00.59 3.68 1 1 0 01-.27 1.11l-2.2 2.2z"
+              />
             </svg>
             <h3 class="font-semibold mb-2">Call Me</h3>
-            <p class="text-muted mb-4">Feel free to give me a call to discuss your needs.</p>
-            <button class="bg-red bg-red-hover text-white px-4 py-2 rounded-lg font-medium">Call Now</button>
-        </div>
-        <div class="bg-white border border-light rounded-lg shadow-md p-6 flex flex-col items-center text-center">
-            <svg class="w-8 h-8 mb-3 text-red" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 12c2.21 0 4-1.79 4-4S14.21 4 12 4 8 5.79 8 8s1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+            <p class="text-muted mb-4">
+              Feel free to give me a call to discuss your needs.
+            </p>
+            <button
+              class="bg-red bg-red-hover text-white px-4 py-2 rounded-lg font-medium"
+            >
+              Call Now
+            </button>
+          </div>
+          <div
+            class="bg-white border border-light rounded-lg shadow-md p-6 flex flex-col items-center text-center"
+          >
+            <svg
+              class="w-8 h-8 mb-3 text-red"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M12 12c2.21 0 4-1.79 4-4S14.21 4 12 4 8 5.79 8 8s1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
+              />
             </svg>
             <h3 class="font-semibold mb-2">Connect on Social</h3>
-            <p class="text-muted mb-4">Follow me on social media & stay updated.</p>
-            <button class="bg-red bg-red-hover text-white px-4 py-2 rounded-lg font-medium">Follow Me</button>
+            <p class="text-muted mb-4">
+              Follow me on social media & stay updated.
+            </p>
+            <button
+              class="bg-red bg-red-hover text-white px-4 py-2 rounded-lg font-medium"
+            >
+              Follow Me
+            </button>
+          </div>
         </div>
-    </div>
-    <div class="bg-white border border-light rounded-lg shadow-md p-6 max-w-3xl mx-auto">
-        <h3 class="text-xl font-semibold mb-2 text-center">Send Me a Message</h3>
-        <p class="text-muted mb-4 text-center">I'm here to help. Let's get in touch!</p>
-        <form class="grid gap-4">
+        <div
+          class="bg-white border border-light rounded-lg shadow-md p-6 max-w-3xl mx-auto"
+        >
+          <h3 class="text-xl font-semibold mb-2 text-center">
+            Send Me a Message
+          </h3>
+          <p class="text-muted mb-4 text-center">
+            I'm here to help. Let's get in touch!
+          </p>
+          <form class="grid gap-4">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <input type="text" placeholder="Your Name" class="border border-border rounded-lg p-2 w-full" />
-                <input type="email" placeholder="Your Email" class="border border-border rounded-lg p-2 w-full" />
+              <input
+                type="text"
+                placeholder="Your Name"
+                class="border border-border rounded-lg p-2 w-full"
+              />
+              <input
+                type="email"
+                placeholder="Your Email"
+                class="border border-border rounded-lg p-2 w-full"
+              />
             </div>
-            <input type="text" placeholder="Subject" class="border border-border rounded-lg p-2 w-full" />
-            <textarea placeholder="Your Message" rows="5" class="border border-border rounded-lg p-2 w-full"></textarea>
-            <button type="submit" class="bg-red bg-red-hover text-white px-4 py-2 rounded-lg font-medium w-full">Send Message</button>
-        </form>
-    </div>
-</section>
-<div
+            <input
+              type="text"
+              placeholder="Subject"
+              class="border border-border rounded-lg p-2 w-full"
+            />
+            <textarea
+              placeholder="Your Message"
+              rows="5"
+              class="border border-border rounded-lg p-2 w-full"
+            ></textarea>
+            <button
+              type="submit"
+              class="bg-red bg-red-hover text-white px-4 py-2 rounded-lg font-medium w-full"
+            >
+              Send Message
+            </button>
+          </form>
+        </div>
+      </section>
+      <div
         id="confirm"
         class="hidden fixed bottom-5 min-w-[300px] left-1/2 transform z-30 -translate-x-1/2 w-[30vw] items-center justify-center bg-green-600 p-3 rounded-lg shadow filter"
       >
@@ -138,7 +214,7 @@
         </div>
         <i id="closeAlert" class="fa-solid text-sm fa-times text-white"></i>
       </div>
-</main>
-<script src="JS/cart.js"></script>
-</body>
+    </main>
+    <script src="JS/cart.js"></script>
+  </body>
 </html>

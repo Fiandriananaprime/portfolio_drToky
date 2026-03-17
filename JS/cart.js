@@ -115,7 +115,6 @@ let confirmTimeout = null;
 const closeAlertBtn = document.getElementById("closeAlert");
 if (closeAlertBtn) {
   closeAlertBtn.addEventListener("click", () => {
-
     const confBox = document.getElementById("confirm");
     if (confBox) {
       confBox.classList.remove("show");

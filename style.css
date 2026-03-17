@@ -164,7 +164,6 @@ button:hover {
   background: linear-gradient(135deg, #f9c0c0 0%, #e5e0d8 40%, #f9f6f1 100%);
 }
 
-
 /* =========================
    LAYOUT UTILITIES
 ========================= */
@@ -186,7 +185,6 @@ button:hover {
   font-size: 0.95rem;
 }
 
-
 /* =========================
    COMPONENTS
 ========================= */
@@ -203,7 +201,7 @@ button:hover {
 }
 
 .section-label::before {
-  content: '';
+  content: "";
   width: 28px;
   height: 1.5px;
   background-color: var(--color-red);
