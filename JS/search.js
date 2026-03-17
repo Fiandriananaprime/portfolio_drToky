@@ -166,13 +166,17 @@
   document.addEventListener('DOMContentLoaded', () => {
     // attempt to dynamically import the central data module so search works across pages
     (async function tryLoadSharedData() {
+      // Resolve candidate paths relative to this script's location so imports don't end up at JS/JS/...
+      const scriptEl = document.querySelector('script[src$="search.js"]') || document.currentScript;
+      const scriptBase = scriptEl && scriptEl.src ? new URL('.', scriptEl.src).href : new URL('.', location.href).href;
       const candidates = [
-        './JS/tokimahery.data.mjs',
+        new URL('tokimahery.data.mjs', scriptBase).href,
+        new URL('./tokimahery.data.mjs', scriptBase).href,
+        new URL('./JS/tokimahery.data.mjs', scriptBase).href,
+        new URL('../JS/tokimahery.data.mjs', scriptBase).href,
         '/JS/tokimahery.data.mjs',
-        'JS/tokimahery.data.mjs',
-        './tokimahery.data.mjs',
-        '../JS/tokimahery.data.mjs',
       ];
+
       for (const p of candidates) {
         try {
           console.log('search.js: attempting dynamic import', p);
@@ -183,8 +187,8 @@
             break;
           }
         } catch (err) {
-          // ignore and try next
-          // console.debug('search.js: import failed for', p, err);
+          console.debug('search.js: import failed for', p, err && err.message ? err.message : err);
+          // try next
         }
       }
 

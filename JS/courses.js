@@ -129,7 +129,7 @@ function listCourse(courses) {
   } else if (loadMoreBtn) loadMoreBtn.style.display = "none";
 }
 
-clearBtn.addEventListener("click", () => {
+if (clearBtn) clearBtn.addEventListener("click", () => {
   searchTerm = "";
   if (searchEl) searchEl.value = "";
   flagsEl.forEach((f) => f.classList.add("active"));
@@ -149,14 +149,14 @@ clearBtn.addEventListener("click", () => {
   listCourse(data.courses);
 });
 
-selectLevel.addEventListener("change", () => {
+if (selectLevel) selectLevel.addEventListener("change", () => {
   const lvl = (selectLevel.value || "").toLowerCase();
   allowedLevels = !lvl || lvl === "all" ? [] : [lvl];
   currentPage = 1;
   listCourse(data.courses);
 });
 
-selectTech.addEventListener("change", () => {
+if (selectTech) selectTech.addEventListener("change", () => {
   const tech = (selectTech.value || "").toLowerCase();
   allowedTechs = !tech || tech === "all" ? [] : [tech];
   currentPage = 1;
@@ -191,19 +191,21 @@ document.querySelectorAll(".flags button").forEach((btn) => {
   });
 });
 
-filterBtn.addEventListener("click", () =>
-  filterPanel.classList.toggle("hidden"),
+if (filterBtn) filterBtn.addEventListener("click", () =>
+  filterPanel && filterPanel.classList.toggle("hidden"),
 );
-closeFilterBtn.addEventListener("click", () =>
-  filterPanel.classList.add("hidden"),
+if (closeFilterBtn) closeFilterBtn.addEventListener("click", () =>
+  filterPanel && filterPanel.classList.add("hidden"),
 );
 
-window.addEventListener("resize", () => {
+document.addEventListener('DOMContentLoaded', () => {
+  // attach listeners that rely on DOM elements and initialize listing
   currentPage = 1;
   setupSearchListener();
-  listCourse(data.courses);
+  if (courseListEl) listCourse(data.courses);
+  window.addEventListener("resize", () => {
+    currentPage = 1;
+    setupSearchListener();
+    if (courseListEl) listCourse(data.courses);
+  });
 });
-
-setupSearchListener();
-currentPage = 1;
-listCourse(data.courses);
