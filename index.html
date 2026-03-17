@@ -20,26 +20,29 @@
     <title>Document</title>
   </head>
   <body>
-    <header class="bg-warm ">
+    <header class="bg-warm">
       <nav
         class="bg-red fixed w-full top-0 z-50 flex items-center justify-between px-5 py-2"
       >
-      <div class="lg:hidden relative">
-            <button id="menuBtn" class="">
-              <i class="fa-solid fa-bars text-white text-2xl"></i>
-            </button>
-            <ul id="navMenu" class=" gap-3 text-red font-bold text-playfair hidden flex flex-col items-center lg:gap-5 absolute bg-white p-3 left-0 shadow-2xl mt-4 rounded-lg">
-              <li><a href="index.html">Home</a></li>
-              <li><a href="blog.html">Blog</a></li>
-              <li><a href="courses.html">Courses</a></li>
-              <li><a href="testimonial.html">Testimonials</a></li>
-              <li><a href="research.html">Research</a></li>
-            </ul>
+        <div class="lg:hidden relative">
+          <button id="menuBtn" class="">
+            <i class="fa-solid fa-bars text-white text-2xl"></i>
+          </button>
+          <ul
+            id="navMenu"
+            class="gap-3 text-red font-bold text-playfair hidden flex flex-col items-center lg:gap-5 absolute bg-white p-3 left-0 shadow-2xl mt-4 rounded-lg"
+          >
+            <li><a href="index.html">Home</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="courses.html">Courses</a></li>
+            <li><a href="testimonial.html">Testimonials</a></li>
+            <li><a href="research.html">Research</a></li>
+          </ul>
         </div>
         <a href="index.html"
           ><img class="w-[10vw] min-w-[150px]" src="assets/logo.png" alt=""
         /></a>
-        <ul class=" gap-5 text-white hidden lg:flex">
+        <ul class="gap-5 text-white hidden lg:flex">
           <li><a href="index.html">Home</a></li>
           <li><a href="blog.html">Blog</a></li>
           <li><a href="courses.html">Courses</a></li>
@@ -52,7 +55,7 @@
             placeholder="search anything..."
             class="hidden lg:flex placeholder:text-white placeholder:opacity-50 text-center text-white focus:outline-none px-3 py-2 rounded-lg"
           />
-          
+
           <button class="relative cart">
             <i class="fa-solid fa-basket-shopping text-white text-2xl"></i>
           </button>
@@ -65,9 +68,13 @@
     </header>
     <main class="bg-warm font-sans flex flex-col gap-24 pt-20 pb-20">
       <section class="w-full max-w-6xl mx-auto px-6 sm:px-10 lg:px-16 py-40">
-        <div class="flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-16">
+        <div
+          class="flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-16"
+        >
           <!-- CONTENU TEXTE -->
-          <div class="flex-1 max-w-lg order-2 lg:order-1 text-center lg:text-left">
+          <div
+            class="flex-1 max-w-lg order-2 lg:order-1 text-center lg:text-left"
+          >
             <!-- Label section -->
             <p
               class="flex items-center gap-3 text-text-muted text-[0.65rem] font-semibold tracking-[0.18em] uppercase mb-8 before:block before:w-7 before:h-[1.5px] before:bg-red"
@@ -221,8 +228,12 @@
           </div>
 
           <!-- PHOTO -->
-          <figure class="relative flex items-center justify-center flex-shrink-0 order-1 lg:order-2 mb-10 lg:mb-0">
-            <div class="photo-ring w-52 h-52 sm:w-64 sm:h-64 lg:w-80 lg:h-80 rounded-full p-[5px] shadow-lg">
+          <figure
+            class="relative flex items-center justify-center flex-shrink-0 order-1 lg:order-2 mb-10 lg:mb-0"
+          >
+            <div
+              class="photo-ring w-52 h-52 sm:w-64 sm:h-64 lg:w-80 lg:h-80 rounded-full p-[5px] shadow-lg"
+            >
               <!-- Remplace src par le chemin de ta photo -->
               <img
                 src="assets/square-image.jpg"
@@ -233,65 +244,43 @@
           </figure>
         </div>
       </section>
-<section class="bg-white py-40">
+      <section class="bg-white py-40">
+        <div class="w-full max-w-6xl mx-auto px-6 section-padding">
+          <div class="flex flex-col lg:flex-row lg:items-start gap-8 lg:gap-20">
+            <!-- LEFT -->
+            <div class="w-full lg:w-72 shrink-0">
+              <p class="section-label mb-6">Who I am</p>
 
-  <div class="w-full max-w-6xl mx-auto px-6 section-padding">
+              <h2 class="font-display text-dark leading-tight title-size">
+                <span class="block font-bold">About</span>
+                <span class="block font-bold italic">me</span>
+              </h2>
+            </div>
 
-    <div class="flex flex-col lg:flex-row lg:items-start gap-8 lg:gap-20">
+            <!-- RIGHT -->
+            <div class="flex-1">
+              <div class="mb-10 text-block">
+                <p
+                  id="aboutME1"
+                  class="text-muted leading-relaxed mb-5 paragraph"
+                ></p>
 
-      <!-- LEFT -->
-      <div class="w-full lg:w-72 shrink-0">
-        <p class="section-label mb-6">Who I am</p>
+                <p
+                  id="aboutME2"
+                  class="text-muted leading-relaxed paragraph"
+                ></p>
+              </div>
 
-        <h2 class="font-display text-dark leading-tight title-size">
-          <span class="block font-bold">About</span>
-          <span class="block font-bold italic">me</span>
-        </h2>
-      </div>
+              <hr class="border-border mb-8" />
 
-      <!-- RIGHT -->
-      <div class="flex-1">
-
-        <div class="mb-10 text-block">
-          <p class="text-muted leading-relaxed mb-5 paragraph">
-            I am a PhD researcher studying complex systems...
-          </p>
-
-          <p class="text-muted leading-relaxed paragraph">
-            It is not an accessory to my work...
-          </p>
+              <div id="overview" class="flex flex-col sm:flex-row gap-8"></div>
+            </div>
+          </div>
         </div>
-
-        <hr class="border-border mb-8" />
-
-        <div class="flex flex-col sm:flex-row gap-8">
-
-          <div>
-            <p class="stat-number">9</p>
-            <p class="stat-label">Years experience</p>
-          </div>
-
-          <div>
-            <p class="stat-number accent">800+</p>
-            <p class="stat-label">Students taught</p>
-          </div>
-
-          <div>
-            <p class="stat-number accent">20+</p>
-            <p class="stat-label">Topics</p>
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
+      </section>
     </main>
     <footer></footer>
+    <script type="module" src="JS/home.js"></script>
     <script src="JS/courses.js"></script>
     <script src="JS/cart.js"></script>
     <script src="JS/range.js"></script>
