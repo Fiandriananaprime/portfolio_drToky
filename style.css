@@ -163,3 +163,69 @@ button:hover {
 .photo-ring {
   background: linear-gradient(135deg, #f9c0c0 0%, #e5e0d8 40%, #f9f6f1 100%);
 }
+
+
+/* =========================
+   LAYOUT UTILITIES
+========================= */
+
+.section-padding {
+  padding-left: clamp(1.5rem, 5vw, 4rem);
+  padding-right: clamp(1.5rem, 5vw, 4rem);
+}
+
+.title-size {
+  font-size: clamp(2.4rem, 5vw, 3.2rem);
+}
+
+.text-block {
+  max-width: 38rem;
+}
+
+.paragraph {
+  font-size: 0.95rem;
+}
+
+
+/* =========================
+   COMPONENTS
+========================= */
+
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.section-label::before {
+  content: '';
+  width: 28px;
+  height: 1.5px;
+  background-color: var(--color-red);
+}
+
+.stat-number {
+  font-family: "Playfair Display", serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--color-text-dark);
+  line-height: 1;
+}
+
+.stat-number.accent {
+  color: var(--color-red);
+}
+
+.stat-label {
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-text-light);
+  margin-top: 4px;
+}
