@@ -1,113 +1,5 @@
-const courses = [
-  {
-    id: 1,
-    title: "Javascript for beginners",
-    description:
-      "Javascript made easy as your first language. This video walks you through the basic mechanism of algorithms, loops, conditions, functions, JS modules, unit tests, and modern syntax perfect for starters",
-    creationDate: new Date("2026-01-01"),
-    thumbnail: "https://picsum.photos/400",
-    price: 120000,
-    level: "beginner",
-    language: "en",
-    technologies: ["javascript"],
-  },
-  {
-    id: 2,
-    title: "Java for beginners",
-    description:
-      "A simple course for true beginners in Java. Learn OOP fundamentals: classes, objects, encapsulation, inheritance, polymorphism, abstraction to understand the basics of Java.",
-    creationDate: new Date("2026-01-01"),
-    thumbnail: "https://picsum.photos/400",
-    price: 220000,
-    level: "beginner",
-    language: "en",
-    technologies: ["java"],
-  },
-  {
-    id: 3,
-    title: "Relational Databases for beginners",
-    description:
-      "Understand how relational databases really work. This course introduces tables, primary keys, foreign keys, constraints, normalization, ER diagrams, and SQL basics.",
-    creationDate: new Date("2026-01-01"),
-    thumbnail: "https://picsum.photos/400",
-    price: 180000,
-    level: "beginner",
-    language: "fr",
-    technologies: ["sql"],
-  },
-  {
-    id: 4,
-    title: "Git & Version Control Essentials",
-    description:
-      "Master Git from scratch. Learn repositories, commits, branches, merging, rebasing, resolving conflicts, and collaborating with remote repositories like GitHub.",
-    creationDate: new Date("2026-01-01"),
-    thumbnail: "https://picsum.photos/400",
-    price: 95000,
-    level: "beginner",
-    language: "en",
-    technologies: [],
-  },
-  {
-    id: 5,
-    title: "Operating Systems Fundamentals",
-    description:
-      "Discover how operating systems manage processes, memory, files, threads, and scheduling. Understand the difference between user space and kernel space, concurrency basics.",
-    creationDate: new Date("2026-01-01"),
-    thumbnail: "https://picsum.photos/400",
-    price: 200000,
-    level: "intermediate",
-    language: "fr",
-    technologies: [],
-  },
-  {
-    id: 6,
-    title: "Technical English for Developers",
-    description:
-      "Improve your English for the tech world. Learn essential vocabulary for programming, documentation, meetings, presentations, and job interviews.",
-    creationDate: new Date("2026-01-01"),
-    thumbnail: "https://picsum.photos/400",
-    price: 85000,
-    level: "beginner",
-    language: "mg",
-    technologies: [],
-  },
-  {
-    id: 7,
-    title: "Professional French Communication",
-    description:
-      "Strengthen your French for academic and professional environments. Focus on formal writing, presentations, technical explanations, and clear structured arguments.",
-    creationDate: new Date("2026-01-01"),
-    thumbnail: "https://picsum.photos/400",
-    price: 80000,
-    level: "beginner",
-    language: "mg",
-    technologies: [],
-  },
-  {
-    id: 8,
-    title: "SEO Fundamentals for Web Developers",
-    description:
-      "Learn how search engines work and how to optimize websites for visibility. Cover keywords, technical SEO, performance optimization, metadata, and structured data.",
-    creationDate: new Date("2026-01-01"),
-    thumbnail: "https://picsum.photos/400",
-    price: 150000,
-    level: "intermediate",
-    language: "en",
-    technologies: ["javascript"],
-  },
-  {
-    id: 9,
-    title: "Spring Boot for Backend Development",
-    description:
-      "Build modern REST APIs with Spring Boot. Learn dependency injection, controllers, services, JPA, security basics, validation, and scalable backend architecture.",
-    creationDate: new Date("2026-01-01"),
-    thumbnail: "https://picsum.photos/400",
-    price: 250000,
-    level: "advanced",
-    language: "fr",
-    technologies: ["java"],
-  },
-];
+import data from './tokimahery.data.mjs';
+const courses = (data && data.courses) ? data.courses : [];
 const cartList = document.getElementById("cartList");
 let alertTimeout = null;
 let confirmTimeout = null;
@@ -166,7 +58,6 @@ if (cartList) {
       const conf = document.getElementById("confirm");
       if (conf) {
         conf.classList.add("show");
-        // clear any previous confirm timeout
         if (confirmTimeout) {
           clearTimeout(confirmTimeout);
           confirmTimeout = null;
@@ -292,6 +183,8 @@ function addToCart(id) {
     showAlert("Course is already in the cart");
   }
 }
+// expose addToCart for inline handlers (HTML onclick)
+try { window.addToCart = addToCart; } catch (e) { /* ignore */ }
 function updateCartCount() {
   const cart = JSON.parse(localStorage.getItem("cart")) || [];
   const cartBtn =
@@ -303,8 +196,17 @@ function updateCartCount() {
 
   if (cart.length === 0) {
     cartList.style.display = "none";
-    cartContent = `<p class="text-gray-500">Your cart is empty.</p>`;
+    totalSection = "";
+    cartContent = `<p class="text-gray-500 w-full text-center">Your cart is empty.</p>`;
   } else {
+    totalSection = `
+    <hr class="border-t border-gray-300 my-1">
+    <div class="flex flex-col items-center mt-2">
+    <div class="flex justify-between items-center mt-2 w-full">
+      <span class="text-sm text-muted">Total:</span><span class="text-sm font-bold">${getCartTotal().toLocaleString("fr-FR")} Ar</span>
+    </div>
+      <button id="confirmOrder" class="mt-4 w-[90%] bg-red text-white py-1 rounded-2xl hover:bg-dark transition">Confirm Order</button>
+    </div>`;
     cartContent = `
       <ul class="text-dark  flex flex-col gap-2">
         ${cart
@@ -331,13 +233,7 @@ function updateCartCount() {
     <button id="closeCart" class="text-muted hover:text-red"><i class="fa-solid fa-times"></i></button>
   </div>
     ${cartContent}
-    <hr class="border-t border-gray-300 my-1">
-    <div class="flex flex-col items-center mt-2">
-    <div class="flex justify-between items-center mt-2 w-full">
-      <span class="text-sm text-muted">Total:</span><span class="text-sm font-bold">${getCartTotal().toLocaleString("fr-FR")} Ar</span>
-    </div>
-      <button id="confirmOrder" class="mt-4 w-[90%] bg-red text-white py-1 rounded-2xl hover:bg-dark transition">Confirm Order</button>
-    </div>
+    ${totalSection}
    `;
 }
 function getCartTotal() {

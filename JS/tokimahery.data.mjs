@@ -77,6 +77,7 @@ const data = {
       level: "beginner",
       language: "en",
       technologies: ["javascript"],
+      page:"courses.html#course-1"
     },
     {
       id: 2,
@@ -89,6 +90,7 @@ const data = {
       level: "beginner",
       language: "en",
       technologies: ["java"],
+      page:"courses.html#course-2"
     },
     {
       id: 3,
@@ -101,6 +103,7 @@ const data = {
       level: "beginner",
       language: "fr",
       technologies: ["sql"],
+      page:"courses.html#course-3"
     },
     {
       id: 4,
@@ -113,6 +116,7 @@ const data = {
       level: "beginner",
       language: "en",
       technologies: [],
+      page:"courses.html#course-4"
     },
     {
       id: 5,
@@ -125,6 +129,7 @@ const data = {
       level: "beginner",
       language: "fr",
       technologies: [],
+        page:"courses.html#course-5"
     },
     {
       id: 6,
@@ -137,6 +142,7 @@ const data = {
       level: "beginner",
       language: "mg",
       technologies: [],
+        page:"courses.html#course-6"
     },
     {
       id: 7,
@@ -149,6 +155,7 @@ const data = {
       level: "beginner",
       language: "mg",
       technologies: [],
+        page:"courses.html#course-7"
     },
     {
       id: 8,
@@ -161,6 +168,7 @@ const data = {
       level: "intermediate",
       language: "en",
       technologies: ["javascript"],
+      page:"courses.html#course-8"
     },
     {
       id: 9,
@@ -173,6 +181,7 @@ const data = {
       level: "advanced",
       language: "fr",
       technologies: ["java"],
+      page:"courses.html#course-9"
     },
   ],
 
@@ -189,6 +198,7 @@ const data = {
         "A precious aid, a light shining upon every step of my journey",
       author: "Soa Mariaka, Promotion Mpamakilay, HEI (2021-2024)",
       thumbnail: "https://picsum.photos/200",
+      page: "testimonials.html#testimonial-1"
     },
     {
       id: 2,
@@ -198,6 +208,7 @@ const data = {
         "An inspiring mentor who transforms complex concepts into clear and structured knowledge. The discipline and rigor I learned here shaped the way I approach every technical challenge today.",
       author: "Faniry Keziah, Promotion Mpamakilay, HEI (2022-2025)",
       thumbnail: "https://picsum.photos/200",
+      page: "testimonials.html#testimonial-2"
     },
     {
       id: 3,
@@ -207,6 +218,7 @@ const data = {
         "More than courses, it was a mindset shift. Learning how to think structurally about databases and algorithms changed my confidence as a developer.",
       author: "Ando Ramanantsoa, Promotion Avotra, HEI (2021-2024)",
       thumbnail: "https://picsum.photos/200",
+        page: "testimonials.html#testimonial-3"
     },
     {
       id: 4,
@@ -216,6 +228,7 @@ const data = {
         "The emphasis on fundamentals — Git, SQL, system design — prepared me for real-world projects. Every assignment felt practical and meaningful.",
       author: "Dinasoa Ratsimba, Promotion Avotra, HEI (2022-2025)",
       thumbnail: "https://picsum.photos/200",
+      page: "testimonials.html#testimonial-4"
     },
     {
       id: 5,
@@ -225,6 +238,7 @@ const data = {
         "Demanding but fair. The standards were high, yet the support was constant. I learned discipline, autonomy, and how to truly understand what I build.",
       author: "Judicael Randrianjato, Promotion Mpamakilay, HEI (2021-2024)",
       thumbnail: "https://picsum.photos/200",
+      page: "testimonials.html#testimonial-5"
     },
     {
       id: 6,
@@ -331,6 +345,7 @@ const data = {
       creationDate: new Date("2026-03-08"),
       thumbnail: "https://picsum.photos/400",
       tags: ["education", "HEI"],
+      page: "blog.html#post-1",
     },
     {
       id: 2,
@@ -340,6 +355,7 @@ const data = {
       creationDate: new Date("2026-01-12"),
       thumbnail: "https://picsum.photos/400",
       tags: ["databases", "SQL", "education"],
+      page: "blog.html#post-2",
     },
     {
       id: 3,
@@ -349,6 +365,7 @@ const data = {
       creationDate: new Date("2026-02-03"),
       thumbnail: "https://picsum.photos/400",
       tags: ["git", "software-engineering", "education"],
+      page: "blog.html#post-3",
     },
     {
       id: 4,
@@ -358,6 +375,7 @@ const data = {
       creationDate: new Date("2026-03-19"),
       thumbnail: "https://picsum.photos/400",
       tags: ["svelte", "typescript", "assessment"],
+      page: "blog.html#post-4",
     },
     {
       id: 5,
@@ -367,6 +385,7 @@ const data = {
       creationDate: new Date("2026-04-08"),
       thumbnail: "https://picsum.photos/400",
       tags: ["operating-systems", "computer-science", "education"],
+      page: "blog.html#post-5",
     },
     {
       id: 6,
@@ -376,6 +395,7 @@ const data = {
       creationDate: new Date("2026-05-27"),
       thumbnail: "https://picsum.photos/400",
       tags: ["spring-boot", "java", "backend"],
+      page: "blog.html#post-6",
     },
     {
       id: 7,
@@ -385,6 +405,7 @@ const data = {
       creationDate: new Date("2026-07-14"),
       thumbnail: "https://picsum.photos/400",
       tags: ["english", "career", "education"],
+      page: "blog.html#post-7",
     },
     {
       id: 8,
@@ -394,6 +415,7 @@ const data = {
       creationDate: new Date("2026-09-02"),
       thumbnail: "https://picsum.photos/400",
       tags: ["seo", "web-development", "performance"],
+      page: "blog.html#post-8",
     },
     {
       id: 9,
@@ -403,6 +425,7 @@ const data = {
       creationDate: new Date("2026-11-18"),
       thumbnail: "https://picsum.photos/400",
       tags: ["algorithms", "pedagogy", "education"],
+      page: "blog.html#post-9",
     },
   ],
 
