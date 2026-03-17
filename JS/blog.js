@@ -110,13 +110,13 @@ if (closeVideoBtn && translateVideo) {
 }
 console.log(window.innerWidth);
 
+if(window.innerWidth <= 1024){
   let randomVideo = data.youtubeVideos[Math.floor(Math.random() * data.youtubeVideos.length)];
   if (videoContainer && randomVideo) {
     videoContainer.innerHTML = `
       <iframe class="w-full h-full" src="https://www.youtube.com/embed/${randomVideo.id}" title="${randomVideo.title}" frameborder="0" allowfullscreen></iframe>
     `;
   }
-  if(window.innerWidth <= 1024){
     setTimeout(() => {
       translateVideo.style.display = 'block';
       setTimeout(() => {
@@ -124,6 +124,7 @@ console.log(window.innerWidth);
       }, 100);
     }, 6000);
   }
+  
   function renderPostCard(post) {
     const date = post.creationDate ? new Date(post.creationDate).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) : '';
     const tagsHtml = (post.tags || []).map(t => `<span class="bg-blue-500 text-white px-3 py-1 rounded-full text-xs mr-2">${t}</span>`).join('');

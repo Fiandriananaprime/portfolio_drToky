@@ -34,7 +34,7 @@ body {
 .bg-red-dark {
   background-color: var(--color-red-dark);
 }
-.bg-red-hover {
+.bg-red-hover:hover {
   background-color: var(--color-red-hover);
 }
 .bg-warm {
