@@ -192,16 +192,14 @@
         }
       }
 
-      // attach to inputs after attempting to load shared data
-      let inputs = Array.from(document.querySelectorAll('input[placeholder*="search"], input[placeholder*="keywords"], input[id^="search"]'));
-      if (!inputs.length) {
-        // fallback: try common ids used in site
-        const fallback = [];
-        ['searchInput','searchInputMobile','search','q','search-box'].forEach(id => { const el = document.getElementById(id); if (el) fallback.push(el); });
-        inputs = fallback;
+      // attach only to the navbar search input by id (#navSearch) — more robust
+      const navInput = document.getElementById('navSearch');
+      if (!navInput) {
+        console.log('search.js: #navSearch not found — not attaching global search');
+        return;
       }
-      console.log('search.js: found search inputs count=', inputs.length);
-      inputs.forEach(attach);
+      console.log('search.js: attaching global search to #navSearch');
+      attach(navInput);
     })();
   });
 })();

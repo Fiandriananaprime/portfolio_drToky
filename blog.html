@@ -54,6 +54,7 @@
         </ul>
         <div class="relative flex items-center gap-3">
           <input
+            id="navSearch"
             type="text"
             placeholder="search anything..."
             class="hidden lg:flex placeholder:text-white placeholder:opacity-50 text-center text-white focus:outline-none px-3 py-2 rounded-lg"
@@ -123,9 +124,7 @@
           class="w-full lg:w-[22%] justify-center lg:justify-start flex lg:flex-col gap-5"
         >
           <div id="archiveContainer" class="w-40% lg:w-full"></div>
-          <div
-            class="w-[50%] lg:w-full shadow-lg p-5 flex flex-col gap-3 rounded-2xl bg-warm"
-          >
+            <form id="newsletter" class="w-[50%] lg:w-full shadow-lg p-5 flex flex-col gap-3 rounded-2xl bg-warm">
             <div class="text-muted text-sm flex gap-3 items-center">
               <hr class="text-red border-2 w-[10%]" />
               Newsletter
@@ -133,18 +132,20 @@
             <p class="text-xs">
               Get new article straight into your inbox. No spam, ever.
             </p>
-            <input
-              type="email"
-              placeholder="Your@email.com"
-              class="w-full mt-3 p-2 bg-white rounded-lg focus:outline-none"
-            />
-            <button
-              type="submit"
-              class="w-full mt-1 p-1 bg-red text-white rounded-lg hover:bg-red-dark"
-            >
-              Subscribe
-            </button>
-          </div>
+              <input
+                id="email"
+                type="email"
+                placeholder="Your@email.com"
+                class="w-full mt-3 p-2 bg-white rounded-lg focus:outline-none"
+              />
+              <button
+                id="submitBtn"
+                type="submit"
+                class="w-full mt-1 p-1 bg-red text-white rounded-lg hover:bg-red-dark"
+              >
+                Subscribe
+              </button>
+            </form>
           <div
             class="w-full hidden shadow-lg p-5 lg:flex flex-col gap-3 rounded-2xl bg-warm"
           >

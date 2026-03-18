@@ -183,8 +183,8 @@ function addToCart(id) {
     showAlert("Course is already in the cart");
   }
 }
-// expose addToCart for inline handlers (HTML onclick)
-try { window.addToCart = addToCart; } catch (e) { /* ignore */ }
+
+try { window.addToCart = addToCart; } catch (e) {}
 function updateCartCount() {
   const cart = JSON.parse(localStorage.getItem("cart")) || [];
   const cartBtn =
@@ -255,3 +255,4 @@ function closeCart() {
   cartList.style.display = "none";
 }
 if (cartList) cartList.innerHTML = updateCartCount();
+export {showAlert};

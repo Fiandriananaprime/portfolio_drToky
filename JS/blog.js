@@ -1,13 +1,14 @@
 import data from './tokimahery.data.mjs';
-
 document.addEventListener("DOMContentLoaded", () => {
-  // data imported from central JS/tokimahery.data.mjs
   const videoContainer = document.getElementById("videoContainer");
   const closeVideoBtn = document.getElementById("closeVideo");
   const translateVideo = document.getElementById("translateVideo");
+  const emailInput = document.getElementById("email");
+  const submitBtn = document.getElementById("submitBtn");
+  const newsletterForm = document.getElementById("newsletter");
 
   let open = true;
-
+  
   if (closeVideoBtn && translateVideo) {
     closeVideoBtn.addEventListener("click", () => {
       if (open) {
@@ -42,7 +43,34 @@ document.addEventListener("DOMContentLoaded", () => {
       }, 100);
     }, 6000);
   }
+  if (localStorage.getItem("newsletterSubscribed") === "true") {
+    emailInput.style.display = "none";
+    submitBtn.style.display = "none";
 
+    newsletterForm.insertAdjacentHTML(
+      "beforeend",
+      `<p class="text-red font-bold italic text-playfair">You're in. Talk soon!</p>`
+    );
+  }
+  if (newsletterForm && emailInput) {
+    newsletterForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const email = emailInput.value.trim();
+      if (isValidEmail(email)) {
+        emailInput.style.display = "none";
+        submitBtn.style.display = "none";
+        newsletterForm.insertAdjacentHTML(
+          "beforeend",
+          `<p class="text-red font-bold  italic text-playfair">You're in.Talk soon!</p>`,
+        );
+        emailInput.value = "";
+        localStorage.setItem("newsletterSubscribed", "true");
+      }
+    });
+  }
+  function isValidEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
   function renderPostCard(post) {
     const date = post.creationDate
       ? new Date(post.creationDate).toLocaleDateString("en-GB", {

@@ -54,6 +54,7 @@
         </ul>
         <div class="relative flex items-center gap-3">
           <input
+            id="navSearch"
             type="text"
             placeholder="search anything..."
             class="hidden lg:flex placeholder:text-white placeholder:opacity-50 text-center text-white focus:outline-none px-3 py-2 rounded-lg"
@@ -169,25 +170,29 @@
           <p class="text-muted mb-4 text-center">
             I'm here to help. Let's get in touch!
           </p>
-          <form class="grid gap-4">
+          <form id="message" class="grid gap-4">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               <input
+                name="name"
                 type="text"
                 placeholder="Your Name"
                 class="border border-border rounded-lg p-2 w-full"
               />
               <input
+                name="email"
                 type="email"
                 placeholder="Your Email"
                 class="border border-border rounded-lg p-2 w-full"
               />
             </div>
             <input
+              name="subject"
               type="text"
               placeholder="Subject"
               class="border border-border rounded-lg p-2 w-full"
             />
             <textarea
+              name="message"
               placeholder="Your Message"
               rows="5"
               class="border border-border rounded-lg p-2 w-full"
@@ -202,6 +207,11 @@
         </div>
       </section>
       <div
+        id="confirmMessage"
+        class="hidden fixed bottom-5 min-w-[300px] left-1/2 transform z-30 -translate-x-1/2 w-[30vw] items-center justify-center bg-green-600 p-3 rounded-lg shadow filter"
+      >
+      </div>
+      <div
         id="confirm"
         class="hidden fixed bottom-5 min-w-[300px] left-1/2 transform z-30 -translate-x-1/2 w-[30vw] items-center justify-center bg-green-600 p-3 rounded-lg shadow filter"
       >
@@ -215,6 +225,7 @@
         <i id="closeAlert" class="fa-solid text-sm fa-times text-white"></i>
       </div>
     </main>
-    <script src="JS/cart.js"></script>
+    <script type="module" src="JS/cart.js"></script>
+    <script type="module" src="JS/touch.js"></script>
   </body>
 </html>

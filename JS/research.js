@@ -35,7 +35,6 @@ function renderResearchCard(paper) {
   `;
 }
 
-// Auto-render into the research page's section if present
 document.addEventListener("DOMContentLoaded", () => {
   const container =
     document.getElementById("papersSection") ||
