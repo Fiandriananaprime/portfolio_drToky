@@ -165,6 +165,25 @@ document.addEventListener("DOMContentLoaded", () => {
   blogContainer.innerHTML = data.posts.map(renderPostCard).join("");
   showPage(currentPage);
 
+  (function goToHashPage() {
+      const hash = location.hash || '';
+      const m = hash.match(/^#post-(\d+)$/);
+      if (!m) return;
+      const pid = Number(m[1]);
+      const idx = (data.posts || []).findIndex(p => Number(p.id) === pid);
+      if (idx === -1) return;
+      const per = window.innerWidth >= 1024 ? 5 : 3;
+      const pageForPost = Math.floor(idx / per) + 1;
+      if (pageForPost !== currentPage) {
+        currentPage = pageForPost;
+        showPage(currentPage);
+      }
+      setTimeout(() => {
+        const el = document.getElementById(`post-${pid}`);
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 80);
+  })();
+
   function renderArchiveList(archives) {
     if (!archives || !archives.length) return "";
     const items = archives
