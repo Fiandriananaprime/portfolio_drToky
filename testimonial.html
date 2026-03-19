@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="tailwind.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.3.2/css/flag-icons.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+      rel="stylesheet"
+    />
+    <title>Testimonials</title>
+  </head>
+  <body>
+    <header class="bg-warm">
+      <nav
+        class="bg-red fixed w-full top-0 z-50 flex items-center justify-between px-5 py-2"
+      >
+        <div class="lg:hidden relative">
+          <button id="menuBtn" class="">
+            <i class="fa-solid fa-bars text-white text-2xl"></i>
+          </button>
+          <ul
+            id="navMenu"
+            class="gap-3 text-red font-bold text-playfair hidden flex flex-col items-center lg:gap-5 absolute bg-white p-3 left-0 shadow-2xl mt-4 rounded-lg"
+          >
+            <li><a href="index.html">Home</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="courses.html">Courses</a></li>
+            <li><a href="testimonial.html">Testimonials</a></li>
+            <li><a href="research.html">Research</a></li>
+          </ul>
+        </div>
+        <a href="index.html"
+          ><img class="w-[10vw] min-w-[150px]" src="assets/logo.png" alt=""
+        /></a>
+        <ul class="gap-5 text-white hidden lg:flex">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="courses.html">Courses</a></li>
+          <li><a href="testimonial.html">Testimonials</a></li>
+          <li><a href="research.html">Research</a></li>
+        </ul>
+        <div class="relative flex items-center gap-3">
+          <input
+            type="text"
+            placeholder="search anything..."
+            class="hidden lg:flex placeholder:text-white placeholder:opacity-50 text-center text-white focus:outline-none px-3 py-2 rounded-lg"
+            id="navSearch"
+          />
+
+          <button class="relative cart">
+            <i class="fa-solid fa-basket-shopping text-white text-2xl"></i>
+          </button>
+          <div
+            id="cartList"
+            class="hidden min-w-[250px] absolute right-0 mt-10 top-0 w-[18vw] bg-white p-3 rounded-lg shadow-lg flex flex-col items-center"
+          ></div>
+        </div>
+      </nav>
+      <section
+        class="flex flex-col justify-center items-center gap-5 py-10 mt-15 shadow"
+      >
+        <h5 class="flex justify-center items-center gap-5 text-light font-bold">
+          <span class="w-10 h-1 bg-red"></span> Social proof<span
+            class="w-10 h-1 bg-red-dark"
+          ></span>
+        </h5>
+        <h1 class="text-5xl lg:text-6xl font-bold text-center">
+          <span class="text-dark font-playfair block">What people</span>
+          <span class="text-red font-playfair italic block">say</span>
+        </h1>
+        <p class="text-muted text-center max-w-xl px-5">
+          Hundreds of students, collaborators, and clients have trust
+          <span class="block"
+            >tokimahery expertise. Here's what they have to say.</span
+          >
+        </p>
+      </section>
+    </header>
+    <main>
+      <section
+        class="w-full max-w-7xl mx-auto py-[5rem]"
+        style="
+          padding-left: clamp(1.5rem, 3vw, 2.5rem);
+          padding-right: clamp(1.5rem, 3vw, 2.5rem);
+        "
+      >
+        <p class="section-label mb-10">Students</p>
+        <div
+          id="testimonialsGrid"
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3"
+        ></div>
+      </section>
+
+      <section
+        class="w-full max-w-7xl mx-auto py-[5rem]"
+        style="
+          padding-left: clamp(1.5rem, 3vw, 2.5rem);
+          padding-right: clamp(1.5rem, 3vw, 2.5rem);
+        "
+      >
+        <p class="section-label mb-10">Collaborators</p>
+        <div
+          id="collabGrid"
+          class="grid grid-cols-1 sm:grid-cols-2 gap-4"
+        ></div>
+      </section>
+
+      <section
+        class="w-full max-w-7xl mx-auto py-[5rem]"
+        style="
+          padding-left: clamp(1.5rem, 3vw, 2.5rem);
+          padding-right: clamp(1.5rem, 3vw, 2.5rem);
+        "
+      >
+        <p class="section-label mb-10">Customers</p>
+        <div
+          id="customerGrid"
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
+        ></div>
+      </section>
+    </main>
+    <footer
+      class="flex flex-col items-center justify-center gap-5 bg-red py-15"
+    >
+      <h3 class="text-3xl text-white font-playfair font-bold">
+        Join them.
+      </h3>
+      <p class="text-white text-sm w-[40%] min-w-[300px] text-center">
+        Book a free discover call and find the course that fits your goals and
+        schedule.
+      </p>
+      <button
+        class="py-3 px-8 rounded-3xl border border-white text-white hover:bg-white hover-text-red"
+      >
+        <a href="getInTouch.html">Get in touch</a>
+      </button>
+    </footer>
+    <script type="module" src="JS/testimonial.js"></script>
+    <script src="JS/tokimahery.data.js"></script>
+    <script src="JS/search.js"></script>
+    <script type="module" src="JS/courses.js"></script>
+    <script type="module" src="JS/cart.js"></script>
+    <script src="JS/range.js"></script>
+  </body>
+</html>
