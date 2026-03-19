@@ -17,7 +17,7 @@
       href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
       rel="stylesheet"
     />
-    <title>Document</title>
+    <title>Home</title>
   </head>
   <body>
     <header class="bg-warm">
@@ -97,17 +97,16 @@
               </h2>
             </hgroup>
 
-            <!-- Rôles -->
+            <!-- Roles -->
             <p
               class="text-text-light text-[0.62rem] font-normal tracking-[0.18em] uppercase mb-5"
             >
-              Consultant &nbsp;·&nbsp; Teacher &nbsp;·&nbsp; Developer
-              &nbsp;·&nbsp; Translator &nbsp;·&nbsp; PhD
+              Consultant &nbsp;&middot;&nbsp; Teacher &nbsp;&middot;&nbsp; Developer &nbsp;&middot;&nbsp; Translator &nbsp;&middot;&nbsp; PhD
             </p>
 
             <!-- Bio -->
             <p class="text-text-muted text-base leading-relaxed mb-7 max-w-sm">
-              Bridging knowledge across disciplines — from cutting-edge software
+              Bridging knowledge across disciplines - from cutting-edge software
               development to academic research and multilingual expertise.
             </p>
 
@@ -120,7 +119,7 @@
                 Book a course
               </a>
               <a
-                href="#about-me"`
+                href="#about-me"
                 class="border border-border hover:border-red hover:text-red text-text-dark text-[0.78rem] font-medium tracking-wide px-5 py-2.5 rounded transition-colors duration-200"
               >
                 About me
@@ -132,11 +131,11 @@
               href="getInTouch.html"
               class="inline-flex items-center gap-1.5 text-red text-[0.70rem] font-semibold tracking-[0.12em] uppercase hover:underline mb-8"
             >
-              Ask for a collaboration <span aria-hidden="true">→</span>
+              Ask for a collaboration <span aria-hidden="true">&rarr;</span>
             </a>
 
-            <!-- Réseaux sociaux -->
-            <nav aria-label="Réseaux sociaux">
+            <!-- Social links -->
+            <nav aria-label="Social links">
               <ul class="flex items-center gap-4 mt-2">
                 <li>
                   <a
@@ -333,8 +332,7 @@
           class="text-white text-sm leading-relaxed mb-8 max-w-md"
           style="opacity: 0.9"
         >
-          Whether you're looking for a course, a consultation, or a translation
-          — let's talk.
+          Whether you're looking for a course, a consultation, or a translation - let's talk.
         </p>
         <a
           href="getInTouch.html"
@@ -346,13 +344,30 @@
           Get in touch
         </a>
       </section>
+      <div
+        id="confirm"
+        class="hidden fixed min-w-[300px] bottom-5 left-1/2 transform z-30 -translate-x-1/2 w-[30vw] items-center justify-center bg-green-600 p-3 rounded-lg shadow filter"
+      >
+        <span class="text-3xl m-2">&#127881;</span>
+        <div class="text-white">
+          <h3 class="font-bold">Thank you so much for buying our courses!</h3>
+          <p class="text-sm">
+            We'll be in touch shortly with all the details. Welcome aboard!
+          </p>
+        </div>
+        <i id="closeAlert" class="fa-solid text-sm fa-times text-white"></i>
+      </div>
+      <div
+        id="alert"
+        class="fixed top-[50vh] z-20 shadow-2xl left-1/2 transform -translate-x-1/2"
+      ></div>
     </div>
     </main>
-    <script type="module" src="JS/home.js"></script>
     <script src="JS/tokimahery.data.js"></script>
+    <script src="JS/home.js"></script>
     <script src="JS/search.js"></script>
-  <script type="module" src="JS/courses.js"></script>
-  <script type="module" src="JS/cart.js"></script>
-    <script src="JS/range.js"></script>
-  </body>
+    <script src="JS/cart.js"></script>
+    </body>
 </html>
+
+

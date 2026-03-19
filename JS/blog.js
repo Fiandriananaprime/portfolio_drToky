@@ -1,4 +1,6 @@
-import data from './tokimahery.data.mjs';
+(function () {
+const data = window.sharedData || window.data;
+if (!data) return;
 document.addEventListener("DOMContentLoaded", () => {
   const videoContainer = document.getElementById("videoContainer");
   const closeVideoBtn = document.getElementById("closeVideo");
@@ -8,6 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const newsletterForm = document.getElementById("newsletter");
 
   let open = true;
+  let randomVideo = null;
   
   if (closeVideoBtn && translateVideo) {
     closeVideoBtn.addEventListener("click", () => {
@@ -29,21 +32,28 @@ document.addEventListener("DOMContentLoaded", () => {
   
 
   if (window.innerWidth <= 1024) {
-    let randomVideo =
+    randomVideo =
       data.youtubeVideos[Math.floor(Math.random() * data.youtubeVideos.length)];
     if (videoContainer && randomVideo) {
       videoContainer.innerHTML = `
       <iframe class="w-full h-full" src="https://www.youtube.com/embed/${randomVideo.id}" title="${randomVideo.title}" frameborder="0" allowfullscreen></iframe>
     `;
     }
-    setTimeout(() => {
-      translateVideo.style.display = "block";
+    if (translateVideo) {
       setTimeout(() => {
-        translateVideo.style.transform = "translateX(0px)";
-      }, 100);
-    }, 6000);
+        translateVideo.style.display = "block";
+        setTimeout(() => {
+          translateVideo.style.transform = "translateX(0px)";
+        }, 100);
+      }, 6000);
+    }
   }
-  if (localStorage.getItem("newsletterSubscribed") === "true") {
+  if (
+    localStorage.getItem("newsletterSubscribed") === "true" &&
+    emailInput &&
+    submitBtn &&
+    newsletterForm
+  ) {
     emailInput.style.display = "none";
     submitBtn.style.display = "none";
 
@@ -233,3 +243,6 @@ document.addEventListener("DOMContentLoaded", () => {
     ytContainer.innerHTML = renderYouTubeList(data.youtubeVideos);
   }
 });
+})();
+
+

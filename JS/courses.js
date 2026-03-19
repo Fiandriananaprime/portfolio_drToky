@@ -1,4 +1,6 @@
-import data from './tokimahery.data.mjs';
+(function () {
+const data = window.sharedData || window.data;
+if (!data) return;
 
 const courseListEl = document.getElementById("courseList");
 const selectTech = document.getElementById("selectTech");
@@ -269,3 +271,6 @@ document.addEventListener('DOMContentLoaded', () => {
     listCourse(data.courses);
   });
 });
+})();
+
+

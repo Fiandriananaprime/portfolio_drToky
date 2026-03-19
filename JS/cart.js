@@ -1,4 +1,5 @@
-import data from './tokimahery.data.mjs';
+(function () {
+const data = window.sharedData || window.data;
 const courses = (data && data.courses) ? data.courses : [];
 const cartList = document.getElementById("cartList");
 let alertTimeout = null;
@@ -255,4 +256,7 @@ function closeCart() {
   cartList.style.display = "none";
 }
 if (cartList) cartList.innerHTML = updateCartCount();
-export {showAlert};
+try { window.addToCart = addToCart; } catch (e) {} 
+try { window.showAlert = showAlert; } catch (e) {}
+})();
+

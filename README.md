@@ -9,12 +9,14 @@ Projet final de Web 1 : portfolio vitrine de Dr Toky / Tokimahery Ramarozaka.
 
 ## Important
 
-Il est fortement recommande d'executer ce projet avec `Live Server` dans VS Code plutot que d'ouvrir directement les fichiers HTML dans le navigateur.
+Le projet peut maintenant fonctionner en ouvrant directement les fichiers HTML dans le navigateur.
 
-Cela permet d'eviter certains problemes de fonctionnement lies :
-- aux fichiers JavaScript charges en type module
-- aux restrictions du navigateur sur les fichiers locaux
-- a certains elements integres qui peuvent mal s'afficher sans serveur local
+`Live Server` reste recommande pour un meilleur confort pendant le developpement.
+
+Cela peut aider pour :
+- les tests de navigation locale
+- certains comportements du navigateur sur les fichiers locaux
+- un rafraichissement plus pratique pendant les modifications
 
 ## Description
 
@@ -88,3 +90,5 @@ L'ouverture directe du fichier HTML dans le navigateur peut fonctionner partiell
 ## Remarque
 
 Le projet utilise plusieurs ressources chargees par CDN. Une connexion internet est donc recommandee pour afficher correctement les icones, les polices et Tailwind.
+
+
