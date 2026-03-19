@@ -13,6 +13,7 @@ const filterBtn = document.getElementById("filterBtn");
 const filterPanel = document.getElementById("filterPanel");
 const closeFilterBtn = document.getElementById("closeFilter");
 const loadMoreBtn = document.getElementById("loadMore");
+const noMatchesEl = document.getElementById("noMatches");
 const itemsPerPage = 5;
 
 let searchEl =
@@ -26,22 +27,12 @@ let allowedTechs = [];
 let allowedLangs = ["MG", "FR", "EN"];
 let currentPage = 1;
 
-function setupSearchListener() {
-  const input =
-    window.innerWidth >= 1024
-      ? document.getElementById("searchInput")
-      : document.getElementById("searchInputMobile");
-  if (!input) return;
-  input.oninput = (e) => {
-    searchTerm = (e.target.value || "").toLowerCase().trim();
-    currentPage = 1;
-    listCourse(data.courses);
-  };
-  searchEl = input;
-}
+function syncPageWithHash(courses) {
+  const hash = window.location.hash || "";
+  const match = hash.match(/^#course-(.+)$/);
+  if (!match || window.innerWidth >= 1024) return;
 
-function listCourse(courses) {
-  if (!courseListEl) return;
+  const targetId = match[1];
   const filtered = courses
     .filter((c) => {
       const hay =
@@ -71,19 +62,85 @@ function listCourse(courses) {
       return c.price >= min && c.price <= max;
     });
 
+  const idx = filtered.findIndex((c) => String(c.id) === targetId);
+  if (idx !== -1) {
+    currentPage = Math.floor(idx / itemsPerPage) + 1;
+  }
+}
+
+function setupSearchListener() {
+  const input =
+    window.innerWidth >= 1024
+      ? document.getElementById("searchInput")
+      : document.getElementById("searchInputMobile");
+  if (!input) return;
+  input.oninput = (e) => {
+    searchTerm = (e.target.value || "").toLowerCase().trim();
+    currentPage = 1;
+    listCourse(data.courses);
+  };
+  searchEl = input;
+}
+
+function listCourse(courses) {
+  if (!courseListEl) return;
+  syncPageWithHash(courses);
+  const filtered = courses
+    .filter((c) => {
+      const hay =
+        `${c.title} ${c.description} ${(c.technologies || []).join(" ")}`.toLowerCase();
+      return !searchTerm || hay.includes(searchTerm);
+    })
+    .filter(
+      (c) =>
+        !allowedLevels.length ||
+        allowedLevels.includes((c.level || "beginner").toLowerCase()),
+    )
+    .filter(
+      (c) =>
+        !allowedTechs.length ||
+        (c.technologies || [])
+          .map((t) => t.toLowerCase())
+          .some((t) => allowedTechs.includes(t)),
+    )
+    .filter((c) => allowedLangs.includes((c.language || "").toUpperCase()))
+    .filter((c) => {
+      const min = rangeMinEl
+        ? Number(rangeMinEl.value)
+        : Number.NEGATIVE_INFINITY;
+      const max = rangeMaxEl
+        ? Number(rangeMaxEl.value)
+        : Number.POSITIVE_INFINITY;
+      return c.price >= min && c.price <= max;
+    });
+
+  if (noMatchesEl) noMatchesEl.innerHTML = "";
   if (resultCountEl) {
     if (filtered.length === courses.length) {
       resultCountEl.style.display = "none";
-    } else if (filtered.length === 0) {
-      resultCountEl.textContent =
-        "No items match your filters. Try reducing or clearing them";
-      resultCountEl.style.display = "inline";
-    } else {
+    }   
+    else {
       resultCountEl.textContent = `${filtered.length} course${filtered.length !== 1 ? "s" : ""} found`;
       resultCountEl.style.display = "inline";
     }
+    if (filtered.length === 0) {
+      if (noMatchesEl) {
+        noMatchesEl.innerHTML = `
+        <p class="text-2xl italic font-playfair text-muted p-2">No courses match your filters.</p>
+        <button id="clearFilters" class="mt-2 text-red underline">CLEAR FILTERS</button>
+        `;
+        const clearFiltersBtn = noMatchesEl.querySelector('#clearFilters');
+        if (clearFiltersBtn) clearFiltersBtn.addEventListener('click', () => clearFilters());
+      }
+      if (courseListEl) {
+        courseListEl.innerHTML = '';
+        courseListEl.style.display = 'none';
+      }
+      if (loadMoreBtn) loadMoreBtn.style.display = "none";
+      return;
+    }
   }
-
+  if (courseListEl) courseListEl.style.display = '';
   const isMobile = window.innerWidth < 1024;
   let coursesToShow = filtered;
   if (isMobile) {
@@ -129,8 +186,7 @@ function listCourse(courses) {
     };
   } else if (loadMoreBtn) loadMoreBtn.style.display = "none";
 }
-
-if (clearBtn) clearBtn.addEventListener("click", () => {
+function clearFilters() {
   searchTerm = "";
   if (searchEl) searchEl.value = "";
   flagsEl.forEach((f) => f.classList.add("active"));
@@ -138,16 +194,20 @@ if (clearBtn) clearBtn.addEventListener("click", () => {
   allowedLevels = [];
   allowedLangs = ["MG", "FR", "EN"];
   allowedTechs = [];
-  selectLevel.value = "all";
-  selectTech.value = "all";
+  if (selectLevel) selectLevel.value = "all";
+  if (selectTech) selectTech.value = "all";
   if (rangeMinEl) rangeMinEl.value = rangeMinEl.min || 0;
   if (rangeMaxEl) rangeMaxEl.value = rangeMaxEl.max || 300000;
   if (rangeMinEl)
     rangeMinEl.dispatchEvent(new Event("input", { bubbles: true }));
   if (rangeMaxEl)
     rangeMaxEl.dispatchEvent(new Event("input", { bubbles: true }));
+  if (noMatchesEl) noMatchesEl.innerHTML = "";
   currentPage = 1;
   listCourse(data.courses);
+}
+if (clearBtn) clearBtn.addEventListener("click", () => {
+  clearFilters();
 });
 
 if (selectLevel) selectLevel.addEventListener("change", () => {

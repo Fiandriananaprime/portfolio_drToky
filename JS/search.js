@@ -1,5 +1,7 @@
-// Basic site-wide search: searches across known data objects (posts, researchPapers, courses)
+
 (function () {
+  const SEARCH_TARGET_KEY = 'globalSearchTarget';
+
   function debounce(fn, wait) {
     let t;
     return function (...args) {
@@ -10,10 +12,7 @@
 
   function collectItems() {
     const items = [];
-    // debug info: what globals are available
-  console.log('search.js: globals typeof data=', typeof data, 'window.data=', !!window.data, 'window.blogData=', !!window.blogData, 'window.sharedData=', !!window.sharedData, 'typeof researchPapers=', typeof researchPapers);
-  // Prefer the dynamically-imported sharedData (set by dynamic import), fall back to legacy globals
-  const globalData = window.sharedData || ((typeof data !== 'undefined') ? data : (window.data || window.blogData || null));
+    const globalData = window.sharedData || ((typeof data !== 'undefined') ? data : (window.data || window.blogData || null));
     if (globalData && globalData.posts) {
       globalData.posts.forEach(p => items.push({
         type: 'post',
@@ -23,18 +22,26 @@
         page: p.page || `blog.html#post-${p.id}`
       }));
     }
-    // researchPapers may be declared as a top-level const (not on window) or as window.researchPapers
-    const globalResearch = (typeof researchPapers !== 'undefined') ? researchPapers : (window.researchPapers || null);
-    if (globalResearch) {
-      globalResearch.forEach(p => items.push({
+    if (globalData && globalData.papers) {
+      globalData.papers.forEach(p => items.push({
         type: 'paper',
         id: p.id,
         title: p.title,
-        text: (p.abstract || ''),
+        text: (p.abstract || p.summary || ''),
         page: p.page || `research.html#paper-${p.id}`
       }));
+    } else {
+      const globalResearch = (typeof researchPapers !== 'undefined') ? researchPapers : (window.researchPapers || null);
+      if (globalResearch) {
+        globalResearch.forEach(p => items.push({
+          type: 'paper',
+          id: p.id,
+          title: p.title,
+          text: (p.abstract || ''),
+          page: p.page || `research.html#paper-${p.id}`
+        }));
+      }
     }
-    // courses usually live on a `data` object as well
     if (globalData && globalData.courses) {
       globalData.courses.forEach(c => items.push({
         type: 'course',
@@ -44,7 +51,6 @@
         page: c.page || `courses.html#course-${c.id}`
       }));
     }
-    // youtube videos (blog)
     if (globalData && globalData.youtubeVideos) {
       globalData.youtubeVideos.forEach(v => items.push({
         type: 'youtube',
@@ -54,7 +60,6 @@
         page: v.page || `blog.html#youtube-${v.id}`
       }));
     }
-    // archives (blog)
     if (globalData && globalData.archives) {
       globalData.archives.forEach(a => items.push({
         type: 'archive',
@@ -64,8 +69,26 @@
         page: a.page || `blog.html#archive-${(a.slug || a.label).replace(/[^a-z0-9\-]/ig,'-')}`
       }));
     }
-    // blog.js also defines data variable in some pages (same name) - already covered
-    console.log('search.js: collected items count=', items.length, 'posts=', items.filter(i=>i.type==='post').length, 'papers=', items.filter(i=>i.type==='paper').length, 'courses=', items.filter(i=>i.type==='course').length, 'youtube=', items.filter(i=>i.type==='youtube').length, 'archives=', items.filter(i=>i.type==='archive').length);
+    
+    const skipKeys = new Set(['posts','papers','courses','youtubeVideos','archives']);
+    if (globalData) {
+      for (const k of Object.keys(globalData)) {
+        if (skipKeys.has(k)) continue;
+        const arr = globalData[k];
+        if (!Array.isArray(arr)) continue;
+        arr.forEach((el, idx) => {
+          if (!el || typeof el !== 'object') return;
+          const title = el.title || el.label || el.name || el.author || el.role;
+          if (!title) return;
+          const text = el.description || el.abstract || el.summary || el.desc || el.body || '';
+          const id = el.id || el.slug || idx;
+          const page = el.page || `${k}.html#${id}`;
+          const type = k.replace(/s$/, '');
+          items.push({ type, id, title, text, page });
+        });
+      }
+    }
+
     return items;
   }
 
@@ -82,7 +105,7 @@
   function makeSnippet(text, q) {
     const plain = (text || '');
     const idx = plain.toLowerCase().indexOf(q.toLowerCase());
-    // show shorter snippets to reduce visual noise
+    
     const MAX_SNIPPET = 80;
     if (idx === -1) return (plain.length > MAX_SNIPPET) ? plain.slice(0, MAX_SNIPPET) + '...' : plain;
     const start = Math.max(0, idx - 20);
@@ -108,8 +131,8 @@
     container.innerHTML = results.slice(0,8).map(r => `
       <div class="p-2 hover:bg-gray-100 rounded">
         <div class="flex justify-between items-center">
-          <a class="text-sm font-semibold text-dark" href="${r.page}">${r.title}</a>
-          <a class="text-xs text-red hover:underline" href="${r.page}">Voir</a>
+          <a class="text-sm font-semibold text-dark" href="${r.page}" data-search-link="true">${r.title}</a>
+          <a class="text-xs text-red hover:underline" href="${r.page}" data-search-link="true">Voir</a>
         </div>
         <div class="text-xs text-muted mt-1">${makeSnippet(r.text, r.query)}</div>
       </div>
@@ -119,11 +142,9 @@
 
   function positionContainer(inputEl, container) {
     const rect = inputEl.getBoundingClientRect();
-    // make the results a bit wider than the input but clamp to viewport
     const desiredWidth = Math.max(300, rect.width + 120);
-    const maxAllowed = Math.max(200, window.innerWidth - 24); // leave some margin
+    const maxAllowed = Math.max(200, window.innerWidth - 24); 
     const width = Math.min(desiredWidth, maxAllowed, 900);
-    // compute left so the box doesn't overflow the right edge
     const leftCandidate = rect.left + window.scrollX;
     let left = leftCandidate;
     if (leftCandidate + width > window.scrollX + window.innerWidth - 20) {
@@ -135,9 +156,7 @@
     container.style.right = 'auto';
     container.style.top = (rect.bottom + window.scrollY + 6) + 'px';
   }
-
   function doSearch(q, inputEl) {
-    console.log('search.js: doSearch q="'+q+'"');
     const items = collectItems();
     if (!q) { renderResults([], inputEl); return; }
     const results = [];
@@ -150,11 +169,92 @@
     renderResults(results, inputEl);
   }
 
+  function parseSearchTarget(urlLike) {
+    try {
+      const parsed = new URL(urlLike, window.location.href);
+      return {
+        pathname: parsed.pathname,
+        pageName: getPageName(parsed.pathname),
+        hash: parsed.hash,
+      };
+    } catch (_) {
+      return null;
+    }
+  }
+
+  function getPageName(pathname) {
+    const cleanPath = (pathname || '').split('?')[0].split('#')[0];
+    const parts = cleanPath.split('/').filter(Boolean);
+    return (parts[parts.length - 1] || 'index.html').toLowerCase();
+  }
+
+  function saveSearchTarget(href) {
+    const target = parseSearchTarget(href);
+    if (!target || !target.hash) return;
+    sessionStorage.setItem(SEARCH_TARGET_KEY, JSON.stringify(target));
+  }
+
+  function readSearchTarget() {
+    const raw = sessionStorage.getItem(SEARCH_TARGET_KEY);
+    if (!raw) return null;
+    try {
+      return JSON.parse(raw);
+    } catch (_) {
+      sessionStorage.removeItem(SEARCH_TARGET_KEY);
+      return null;
+    }
+  }
+
+  function clearSearchTarget() {
+    sessionStorage.removeItem(SEARCH_TARGET_KEY);
+  }
+
+  function flashTarget(targetEl) {
+    targetEl.classList.remove('highlight');
+    void targetEl.offsetWidth;
+    targetEl.classList.add('highlight');
+    targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    setTimeout(() => {
+      targetEl.classList.remove('highlight');
+    }, 500);
+  }
+
+  function tryHighlightSearchTarget() {
+    const pendingTarget = readSearchTarget();
+    if (!pendingTarget) return false;
+
+    const targetHash = pendingTarget.hash;
+    if (!targetHash) return false;
+
+    const targetEl = document.querySelector(targetHash);
+    if (!targetEl) return false;
+
+    flashTarget(targetEl);
+    clearSearchTarget();
+    return true;
+  }
+
+  function queueHighlightSearchTarget(startDelay = 0) {
+    let attempts = 0;
+    const maxAttempts = 20;
+    const tryLater = () => {
+      attempts += 1;
+      if (tryHighlightSearchTarget() || attempts >= maxAttempts) return;
+      setTimeout(tryLater, 150);
+    };
+    setTimeout(tryLater, startDelay);
+  }
+
   function attach(input) {
-    console.log('search.js: attach to input', input && (input.id || input.placeholder || input));
     const handler = debounce((e) => doSearch(e.target.value.trim(), input), 250);
     input.addEventListener('input', handler);
     input.addEventListener('focus', (e) => { if (e.target.value.trim()) doSearch(e.target.value.trim(), input); });
+    document.addEventListener('click', (ev) => {
+      const link = ev.target.closest('[data-search-link="true"]');
+      if (link && link.href) {
+        saveSearchTarget(link.href);
+      }
+    });
     document.addEventListener('click', (ev) => {
       const container = document.getElementById('searchResults');
       if (!container) return;
@@ -164,9 +264,7 @@
   }
 
   document.addEventListener('DOMContentLoaded', () => {
-    // attempt to dynamically import the central data module so search works across pages
-    (async function tryLoadSharedData() {
-      // Resolve candidate paths relative to this script's location so imports don't end up at JS/JS/...
+    ( async function tryLoadSharedData() {
       const scriptEl = document.querySelector('script[src$="search.js"]') || document.currentScript;
       const scriptBase = scriptEl && scriptEl.src ? new URL('.', scriptEl.src).href : new URL('.', location.href).href;
       const candidates = [
@@ -179,27 +277,26 @@
 
       for (const p of candidates) {
         try {
-          console.log('search.js: attempting dynamic import', p);
           const mod = await import(p);
           if (mod && (mod.default || mod.data)) {
             window.sharedData = mod.default || mod.data;
-            console.log('search.js: loaded sharedData from', p, 'keys=', Object.keys(window.sharedData || {}).join(','));
             break;
           }
-        } catch (err) {
-          console.debug('search.js: import failed for', p, err && err.message ? err.message : err);
-          // try next
+        } catch (e) {
         }
       }
-
-      // attach only to the navbar search input by id (#navSearch) — more robust
+      if (!window.sharedData && (typeof data !== 'undefined')) window.sharedData = data;
       const navInput = document.getElementById('navSearch');
       if (!navInput) {
-        console.log('search.js: #navSearch not found — not attaching global search');
         return;
       }
-      console.log('search.js: attaching global search to #navSearch');
       attach(navInput);
     })();
+  });
+  window.addEventListener('load', () => {
+    queueHighlightSearchTarget(1000);
+  });
+  window.addEventListener('hashchange', () => {
+    queueHighlightSearchTarget(100);
   });
 })();
