@@ -104,18 +104,20 @@
         ></div>
       </section>
 
-      <section
-        class="w-full max-w-7xl mx-auto py-[5rem]"
-        style="
-          padding-left: clamp(1.5rem, 3vw, 2.5rem);
-          padding-right: clamp(1.5rem, 3vw, 2.5rem);
-        "
-      >
-        <p class="section-label mb-10">Collaborators</p>
+      <section class="bg-warm">
         <div
-          id="collabGrid"
-          class="grid grid-cols-1 sm:grid-cols-2 gap-4"
-        ></div>
+          class="w-full max-w-7xl mx-auto py-[5rem]"
+          style="
+            padding-left: clamp(1.5rem, 3vw, 2.5rem);
+            padding-right: clamp(1.5rem, 3vw, 2.5rem);
+          "
+        >
+          <p class="section-label mb-10">Collaborators</p>
+          <div
+            id="collabGrid"
+            class="grid grid-cols-1 sm:grid-cols-2 gap-4"
+          ></div>
+        </div>
       </section>
 
       <section
@@ -135,18 +137,27 @@
     <footer
       class="flex flex-col items-center justify-center gap-5 bg-red py-15"
     >
-      <h3 class="text-3xl text-white font-playfair font-bold">
-        Join them.
-      </h3>
-      <p class="text-white text-sm w-[40%] min-w-[300px] text-center">
-        Book a free discover call and find the course that fits your goals and
-        schedule.
-      </p>
-      <button
-        class="py-3 px-8 rounded-3xl border border-white text-white hover:bg-white hover-text-red"
+      <h3 class="text-3xl text-white font-playfair font-bold">Join them.</h3>
+      <p
+        class="text-white text-sm w-[40%] min-w-[300px] text-center flex flex-col"
       >
-        <a href="getInTouch.html">Get in touch</a>
-      </button>
+        <span
+          >Whever you want to learn, collaborate, or get something built -</span
+        >
+        <span>Tokimahery is ready to help you move foward.</span>
+      </p>
+      <div class="flex gap-3">
+        <button
+          class="py-3 px-8 rounded-3xl border border-white text-red bg-white"
+        >
+          <a href="courses.html"> Book a course </a>
+        </button>
+        <button
+          class="py-3 px-8 rounded-3xl border border-white text-white hover:bg-white hover-text-red"
+        >
+          <a href="getInTouch.html"> Collaborate </a>
+        </button>
+      </div>
     </footer>
     <script type="module" src="JS/testimonial.js"></script>
     <script src="JS/tokimahery.data.js"></script>
