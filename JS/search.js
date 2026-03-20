@@ -121,7 +121,7 @@
     if (!container) {
       container = document.createElement("div");
       container.id = "searchResults";
-      container.className = "absolute bg-white shadow-lg rounded p-2 z-50";
+      container.className = "fixed bg-white shadow-lg rounded p-2 z-50";
       document.body.appendChild(container);
     }
 
