@@ -146,9 +146,8 @@ function listCourse(courses) {
   const isMobile = window.innerWidth < 1024;
   let coursesToShow = filtered;
   if (isMobile) {
-    const start = (currentPage - 1) * itemsPerPage;
-    const end = start + itemsPerPage;
-    coursesToShow = filtered.slice(start, end);
+    const end = currentPage * itemsPerPage;
+    coursesToShow = filtered.slice(0, end);
   }
 
   courseListEl.innerHTML = "";
@@ -272,5 +271,4 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 })();
-
 
