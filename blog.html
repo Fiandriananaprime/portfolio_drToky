@@ -128,7 +128,10 @@
           class="w-full lg:w-[22%] justify-center lg:justify-start flex lg:flex-col gap-5"
         >
           <div id="archiveContainer" class="w-40% lg:w-full"></div>
-            <form id="newsletter" class="w-[50%] lg:w-full shadow-lg p-5 flex flex-col gap-3 rounded-2xl bg-warm">
+          <form
+            id="newsletter"
+            class="w-[50%] lg:w-full shadow-lg p-5 flex flex-col gap-3 rounded-2xl bg-warm"
+          >
             <div class="text-muted text-sm flex gap-3 items-center">
               <hr class="text-red border-2 w-[10%]" />
               Newsletter
@@ -136,20 +139,20 @@
             <p class="text-xs">
               Get new article straight into your inbox. No spam, ever.
             </p>
-              <input
-                id="email"
-                type="email"
-                placeholder="Your@email.com"
-                class="w-full mt-3 p-2 bg-white rounded-lg focus:outline-none"
-              />
-              <button
-                id="submitBtn"
-                type="submit"
-                class="w-full mt-1 p-1 bg-red text-white rounded-lg hover:bg-red-dark"
-              >
-                Subscribe
-              </button>
-            </form>
+            <input
+              id="email"
+              type="email"
+              placeholder="Your@email.com"
+              class="w-full mt-3 p-2 bg-white rounded-lg focus:outline-none"
+            />
+            <button
+              id="submitBtn"
+              type="submit"
+              class="w-full mt-1 p-1 bg-red text-white rounded-lg hover:bg-red-dark"
+            >
+              Subscribe
+            </button>
+          </form>
           <div
             class="w-full hidden shadow-lg p-5 lg:flex flex-col gap-3 rounded-2xl bg-warm"
           >
@@ -198,16 +201,18 @@
         consultation
       </p>
       <div class="flex gap-3">
-        <button
-          class="py-3 px-8 rounded-3xl border border-white text-red bg-white"
+        <a
+          href="courses.html"
+          class="py-3 px-8 rounded-3xl border border-white text-red bg-white hover:scale-105 transition-transform duration-200"
         >
-          <a href="courses.html"> Browse Courses </a>
-        </button>
-        <button
-          class="py-3 px-8 rounded-3xl border border-white text-white hover:bg-white hover-text-red"
+          Browse courses
+        </a>
+        <a
+          href="getInTouch.html"
+          class="py-3 px-8 rounded-3xl border border-white text-white hover:bg-white hover-text-red hover:scale-105 transition-all duration-200"
         >
-          <a href="getInTouch.html"> Collaborate </a>
-        </button>
+          Collaborate
+        </a>
       </div>
     </footer>
     <script src="JS/tokimahery.data.js"></script>
@@ -216,6 +221,3 @@
     <script src="JS/cart.js"></script>
   </body>
 </html>
-
-
-
