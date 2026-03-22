@@ -44,6 +44,7 @@ button:hover {
 }
 .price-range {
   -webkit-appearance: none;
+  appearance: none;
   height: 8px;
   border-radius: 8px;
 }
