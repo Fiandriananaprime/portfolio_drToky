@@ -176,7 +176,6 @@ button:hover {
   display: none;
 }
 
-/*Home */
 .title-clamp {
   font-size: clamp(2rem, 5vw, 3rem);
 }
@@ -184,7 +183,6 @@ button:hover {
   font-size: clamp(1.8rem, 4vw, 2.6rem);
 }
 
-/* Dans style.css */
 .social-icon {
   width: 18px;
   height: 18px;
@@ -198,9 +196,6 @@ button:hover {
   background: linear-gradient(135deg, #f9c0c0 0%, #e5e0d8 40%, #f9f6f1 100%);
 }
 
-/* =========================
-   LAYOUT UTILITIES
-========================= */
 
 .section-padding {
   padding-left: clamp(1.5rem, 5vw, 4rem);
@@ -218,10 +213,6 @@ button:hover {
 .paragraph {
   font-size: 0.95rem;
 }
-
-/* =========================
-   COMPONENTS
-========================= */
 
 .section-label {
   display: flex;
@@ -261,8 +252,6 @@ button:hover {
   color: var(--color-text-light);
   margin-top: 4px;
 }
-
-/* ── COURSES SECTION ── */
 
 .section-label-centered {
   display: flex;
@@ -314,7 +303,6 @@ button:hover {
 }
 .view-all-link:hover { opacity: 0.7; }
 
-/* ── EXPERIENCE SECTION ── */
 .exp-card {
   border-left: 2px solid var(--color-border);
   padding: 0.25rem 0 0.25rem 1.25rem;
@@ -341,8 +329,6 @@ button:hover {
   margin-bottom: 0.6rem;
 }
 
-
-/* ── TESTIMONIALS SECTION ── */
 .testimonial-card {
   background-color: var(--color-bg-white);
   border: 1px solid var(--color-border);
@@ -415,7 +401,7 @@ button:hover {
   color: var(--color-border);
 }
 
-/* ── COLLABORATORS SECTION ── */
+
 .collab-card {
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
@@ -440,7 +426,6 @@ button:hover {
   flex: 1;
 }
 
-/* ── CUSTOMERS SECTION ── */
 .customer-card {
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
