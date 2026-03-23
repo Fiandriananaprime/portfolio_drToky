@@ -15,6 +15,10 @@
   --green: #22c55e;
   --orangered: #f45308;
   --advanced: #b91c1c;
+
+  --green: #22c55e;
+  --orangered: #f45308;
+  --advanced: #b91c1c;
 }
 
 .highlight {
@@ -196,7 +200,6 @@ button:hover {
   background: linear-gradient(135deg, #f9c0c0 0%, #e5e0d8 40%, #f9f6f1 100%);
 }
 
-
 .section-padding {
   padding-left: clamp(1.5rem, 5vw, 4rem);
   padding-right: clamp(1.5rem, 5vw, 4rem);
@@ -266,7 +269,7 @@ button:hover {
 }
 .section-label-centered::before,
 .section-label-centered::after {
-  content: '';
+  content: "";
   display: block;
   width: 40px;
   height: 1.5px;
@@ -279,19 +282,27 @@ button:hover {
   border: 1px solid var(--color-border);
   border-radius: 1rem;
   padding: 1.75rem;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
   cursor: pointer;
 }
 .course-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.10);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
 }
 
-.badge-red  { background-color: var(--color-red); color: #fff; }
-.badge-dark { background-color: var(--color-text-dark); color: #fff; }
+.badge-red {
+  background-color: var(--color-red);
+  color: #fff;
+}
+.badge-dark {
+  background-color: var(--color-text-dark);
+  color: #fff;
+}
 
 .view-all-link {
-  font-size: 0.70rem;
+  font-size: 0.7rem;
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -301,7 +312,9 @@ button:hover {
   padding-bottom: 2px;
   transition: opacity 0.2s;
 }
-.view-all-link:hover { opacity: 0.7; }
+.view-all-link:hover {
+  opacity: 0.7;
+}
 
 .exp-card {
   border-left: 2px solid var(--color-border);
@@ -401,9 +414,10 @@ button:hover {
   color: var(--color-border);
 }
 
-
 .collab-card {
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
 }
 .collab-card:hover {
   transform: translateY(-6px);
@@ -427,7 +441,9 @@ button:hover {
 }
 
 .customer-card {
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
 }
 .customer-card:hover {
   transform: translateY(-6px);
